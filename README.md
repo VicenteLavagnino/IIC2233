@@ -1,4 +1,4 @@
-# Repositorio de Vicente
+# Repositorio de [Vicente Lavagnino](https://github.com/VicenteLavagnino)
 
 Este es el repositorio que utilizarás durante el resto del curso. Tanto profesores, ayudantes y bots tenemos acceso a este y podremos ver todos los cambios que hagas en tu código. **Es tu deber darle un buen uso y solo con fines académicos.**
 
@@ -10,7 +10,7 @@ Todo el proceso de recolección de tareas y actividades está automatizado, por 
 
 | Nombre | Mail UC |
 | :-: | :-: | :-: |
-| {Tu nombre} | {Tu correo UC} |
+| Vicente Lavagnino | vicente.lavagnino@uc.cl|
 
 ## Sobre las entregas
 
