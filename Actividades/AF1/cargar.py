@@ -29,11 +29,26 @@ def cargar_platos(ruta_archivo: str) -> list:
 
         lista_namedtuples.append(mi_tupla(lista_notuple[0],lista_notuple[1],lista_notuple[2],lista_notuple[3],lista_notuple[4]))
 
-    pass
+    return lista_namedtuples
 
 
 # --- EXPLICACION --- #
 # los datos vienen en este orden el el .csv:
 # nombre,cantidad
+
 def cargar_ingredientes(ruta_archivo: str) -> dict:
-    pass
+
+    diccionario = {}
+
+    with open(ingredientes.csv, 'r') as ingredientes:
+
+        for linea in ingredientes:
+
+            linea = linea.strip()
+            linea = linea.split(',')
+
+            diccionario[linea[0]] = linea[1]
+
+            pass
+
+    return diccionario
