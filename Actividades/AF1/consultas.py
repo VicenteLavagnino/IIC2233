@@ -1,8 +1,19 @@
+import cargar
+
 # --- EJEMPLO --- #
 # [Plato1, Plato2, Plato2, Plato4]
 # pasa a ser
 # {"Categoria1": [Plato3, Plato2], "Categoria2": [Plato1, Plato4]}
+
 def platos_por_categoria(lista_platos: list) -> dict:
+
+    diccionario_categorias = {}
+
+    #for plato in cargar.lista_notuple:
+
+        
+
+
     pass
 
 
