@@ -105,7 +105,7 @@ Lo importante es que expliquen qué hace la función y que si saben que alguna p
 ## Referencias de código externo :book:
 
 Para realizar mi tarea saqué código de:
-1. \<link de código>: este hace \<lo que hace> y está implementado en el archivo <nombre.py> en las líneas <número de líneas> y hace <explicación breve de que hace>
+1. \<https://gist.github.com/JIGutierrez/77864621a0c674f02c55b869429fc8a9>: este hace \<que pueda contar las minas de alrededor> y está implementado en el archivo <juego.py> en las líneas <78 (provisoriamente)> y hace <que pueda contar las minas cercanas a la casilla>
 
 
 
