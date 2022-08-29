@@ -13,20 +13,20 @@ class Juego:
 
         self.nombre_usuario = nombre_usuario
         self.nombre_archivo = self.nombre_usuario + ".txt"
-        self.path_archivo = os.path.join("/Desktop/ICC2233/VicenteLavagnino-iic2233-2022-2/Tareas/T0/partidas/" + self.nombre_archivo)
+        self.path_archivo = os.path.join("partidas", self.nombre_archivo)
         self.largo_tablero = math.ceil(largo_tablero)
         self.ancho_tablero = math.ceil(ancho_tablero)
         self.cantidad_bestias = math.ceil(int(self.largo_tablero * self.ancho_tablero * parametros.PROB_BESTIA))
         self.tablero = []
         self.ubicacion_bestias = []
         self.puntaje = 0
-        self.casillas_descubiertas = 0
+        self.casillas_descubiertas = []
 
     def cargar_partida(self, nombre_usuario):
 
         self.nombre_usuario = nombre_usuario 
         self.nombre_archivo = self.nombre_usuario + ".txt"
-        self.path_archivo = os.path.join("/Desktop/ICC2233/VicenteLavagnino-iic2233-2022-2/Tareas/T0/partidas/" + self.nombre_archivo)
+        self.path_archivo = os.path.join("partidas" + self.nombre_archivo)
 
         partida = open(self.path_archivo, "r")
         lineas = partida.readlines()
@@ -45,14 +45,19 @@ class Juego:
 
         partida = open(self.path_archivo, "w")
 
-        lineas = partida.writelines()
+        lineas = partida.write(f"{self.nombre_usuario}, {self.largo_tablero}, {self.ancho_tablero}\n")
+        lineas = partida.write(f"{self.cantidad_bestias}\n")
+        lineas = partida.write(f"{self.tablero}\n")
+        lineas = partida.write(f"{self.ubicacion_bestias}\n")
+        lineas = partida.write(f"{self.puntaje}\n")
+        lineas = partida.write(f"{self.casillas_descubiertas}\n")
         
-        lineas[0] = [self.nombre_usuario, self.largo_tablero, self.ancho_tablero]
-        lineas[1] = self.cantidad_bestias
-        lineas[2] = self.tablero
-        lineas[3] = self.ubicacion_bestias
-        lineas[4] = self.puntaje
-        lineas[5] = self.casillas_descubiertas
+        #   lineas[0] = "{self.nombre_usuario}, {self.largo_tablero}, {self.ancho_tablero}"
+        #   lineas[1] = self.cantidad_bestias
+        #   lineas[2] = self.tablero
+        #   lineas[3] = self.ubicacion_bestias
+        #   lineas[4] = self.puntaje
+        #   lineas[5] = self.casillas_descubiertas
 
         partida.close()
 
@@ -64,14 +69,10 @@ class Juego:
 
             for Y in range(self.ancho_tablero):
                 
-                nueva_columna = [' ']
+                nueva_columna = ' '
                 nueva_fila.append(nueva_columna)
             
             self.tablero.append(nueva_fila)
-
-    def mostrar_tablero(self):
-
-        return tablero.print_tablero(self.tablero, utf8 = True)
 
     def llenar_bestias(self):
 
@@ -90,26 +91,29 @@ class Juego:
                 
     def actualizar_puntaje(self):
 
-        self.puntaje = self.cantidad_bestias * self.casillas_descubiertas * parametros.POND_PUNT
+        self.puntaje = self.cantidad_bestias * len(self.casillas_descubiertas) * parametros.POND_PUNT
 
     
     def descubrir_sector(self):
 
-        X_casilla_por_descubrir = int(input("Ingrese la coordenada X de la casilla por descubrir: "))
+        X_casilla_por_descubrir = input("Ingrese la coordenada X de la casilla por descubrir: ")
 
         # arregalr is digit y perdir antes int en todo caso
 
-        while not X_casilla_por_descubrir.isdigit() or X_casilla_por_descubrir > self.largo_tablero or X_casilla_por_descubrir < 0:
+        while not X_casilla_por_descubrir.isdigit() or int(X_casilla_por_descubrir) > self.largo_tablero or int(X_casilla_por_descubrir) < 0:
             
             print("La coordenada X debe ser un número entero menor que ", self.largo_tablero - 1)
-            X_casilla_por_descubrir = int(input("Ingrese la coordenada X de la casilla por descubrir: "))
+            X_casilla_por_descubrir = input("Ingrese la coordenada X de la casilla por descubrir: ")
 
-        Y_casilla_por_descubrir = int(input("Ingrese la coordenada X de la casilla por descubrir: "))
+        Y_casilla_por_descubrir = input("Ingrese la coordenada X de la casilla por descubrir: ")
 
-        while not (Y_casilla_por_descubrir).isdigit() or Y_casilla_por_descubrir > self.ancho_tablero or Y_casilla_por_descubrir < 0:
+        while not (Y_casilla_por_descubrir).isdigit() or int(Y_casilla_por_descubrir) > self.ancho_tablero or int(Y_casilla_por_descubrir) < 0:
             
             print("La coordenada Y debe ser un número entero menor que ", self.ancho_tablero - 1)
-            Y_casilla_por_descubrir = int(input("Ingrese la coordenada Y de la casilla por descubrir: "))
+            Y_casilla_por_descubrir = input("Ingrese la coordenada Y de la casilla por descubrir: ")
+
+        X_casilla_por_descubrir = int(X_casilla_por_descubrir)
+        Y_casilla_por_descubrir = int(Y_casilla_por_descubrir)
 
         sector = [X_casilla_por_descubrir,Y_casilla_por_descubrir]
 
@@ -127,6 +131,12 @@ class Juego:
             menus.actualizar_ranking(self.nombre_archivo, self.puntaje)
 
             #pierde
+            pass
+
+        elif sector in self.casillas_descubiertas:
+            
+            print("La casilla ha sido descubierta anteriormente")
+            print()
             pass
 
         else:
@@ -158,7 +168,7 @@ class Juego:
                     if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] + 1 == 'N':
+                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
 
                 elif Y_casilla_por_descubrir == 0:
@@ -211,7 +221,7 @@ class Juego:
                     if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] + 1 == 'N':
+                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
      
                 elif Y_casilla_por_descubrir == 0:
@@ -280,12 +290,14 @@ class Juego:
 
             self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir] = casillas_con_bestias
 
-            return self.descubrir_sector()
+            self.casillas_descubiertas.append([X_casilla_por_descubrir, Y_casilla_por_descubrir])
+
+            return self.menu_de_juego()
 
 
     def menu_de_juego(self):
 
-        Juego.mostrar_tablero() #arreglar el utf8
+        tablero.print_tablero_con_utf8(self.tablero) #arreglar el utf8
 
         print("Seleccione una acción:\n")
 
@@ -307,13 +319,13 @@ class Juego:
             opcion_juego = int(input("Ingrese una opción: "))
 
         if opcion_juego == 1:
-            Juego.descubrir_sector()
-            Juego.actualizar_puntaje()
+            self.descubrir_sector()
+            self.actualizar_puntaje()
             menus.actualizar_ranking(self.nombre_usuario, self.puntaje)
 
         elif opcion_juego == 2:
             
-            Juego.guardar_partida()
+            self.guardar_partida()
             print("Partida guardada")
 
             print("Presione [0] para Salir")
@@ -330,7 +342,7 @@ class Juego:
                 exit()
             
             elif opcion == 1:
-                return Juego.menu_de_juego()
+                return self.menu_de_juego()
 
         elif opcion_juego == 3:
             print("...Saliendo de la partida")
@@ -341,13 +353,13 @@ class Juego:
 
             tipo_salida = int(input("Ingrese una opción: "))
 
-            while tipo_salida != 1 or tipo_salida != 2:
+            while tipo_salida != 1 and tipo_salida != 2:
                 print("Su respuesta debe ser 1 o 2")
                 tipo_salida = int(input("Ingrese una opción: "))
                 
             if tipo_salida == 1:
                 
-                Juego.guardar_partida()
+                self.guardar_partida()
                 print("Partida guardada")
                 pass
 
@@ -371,4 +383,4 @@ class Juego:
             print("Saliento del juego")
             exit()
 
-        Juego.menu_de_juego()
+        self.menu_de_juego()

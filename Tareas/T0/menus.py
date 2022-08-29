@@ -36,8 +36,7 @@ def menu_de_inicio():
         nombre_usuario = input("Registre su nombre de usuario: ")
         
         nombre_archivo = nombre_usuario + ".txt"
-        path_absoluto = "/Desktop/ICC2233/VicenteLavagnino-iic2233-2022-2/Tareas/T0/partidas/"
-        path_partida = path_absoluto + nombre_archivo
+        path_partida = os.path.join("partidas", nombre_archivo)
 
         #verifica si el nombre ya está en uso
 
@@ -46,7 +45,7 @@ def menu_de_inicio():
             print("El nombre de usuario ya existe, intente con otro")
             nombre_usuario = input("Registre su nombre de usuario: ")
             nombre_archivo = nombre_usuario + ".txt"
-            path_partida = path_absoluto + nombre_archivo
+            path_partida = os.path.join("partidas", nombre_archivo)
 
 
         largo_tablero = input("Ingrese el largo del tablero (debe ser un número entero entre 3 y 15): ")
@@ -65,7 +64,7 @@ def menu_de_inicio():
         ancho_tablero = int(ancho_tablero)
 
         escritura = open(path_partida, "w") #crea el archivo
-        lineas = escritura.writelines([[nombre_archivo, largo_tablero, ancho_tablero]])
+        lineas = escritura.write(f"{nombre_archivo}, {largo_tablero}, {ancho_tablero}\n")
         escritura.close()
 
         partida = juego.Juego(nombre_usuario, largo_tablero, ancho_tablero)
@@ -81,8 +80,7 @@ def menu_de_inicio():
         nombre_usuario = input("nombre de usuario: ")
 
         nombre_archivo = nombre_usuario + ".txt"
-        path_absoluto = "/Desktop/ICC2233/VicenteLavagnino-iic2233-2022-2/Tareas/T0/partidas/"
-        path_partida = path_absoluto + nombre_archivo
+        path_partida = os.join("partidas", nombre_archivo)
 
         if not os.path.isfile(path_partida):
             
@@ -102,7 +100,7 @@ def menu_de_inicio():
         
         print("Abriendo ranking de puntajes...")
 
-        ruta = os.path.join("/Desktop/ICC2233/VicenteLavagnino-iic2233-2022-2/Tareas/T0/ranking_T0-IIC223.txt")
+        ruta = os.path.join("ranking_T0-IIC2233.txt")
 
         apertura = open(ruta, "r")
         lineas = apertura.readlines()
@@ -126,7 +124,7 @@ def actualizar_ranking(nombre_usuario, puntaje):
 
     #ranking tiene el formato "nombre_usuario, puntaje"
 
-    ruta = os.path.join("/Desktop/ICC2233/VicenteLavagnino-iic2233-2022-2/Tareas/T0/ranking_T0-IIC223.txt")
+    ruta = os.path.join("ranking_T0-IIC2233.txt")
 
     archivo = open(ruta, "wt")
     lineas = archivo.readlines()
@@ -146,7 +144,7 @@ def actualizar_ranking(nombre_usuario, puntaje):
 
 def mostrar_ranking():
 
-    ruta = os.path.join("/Desktop/ICC2233/VicenteLavagnino-iic2233-2022-2/Tareas/T0/ranking_T0-IIC223.txt")
+    ruta = os.path.join("ranking_T0-IIC223.txt")
 
     apertura = open(ruta, "r")
     lineas = apertura.readlines()
