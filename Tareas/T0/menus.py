@@ -122,49 +122,33 @@ def actualizar_ranking(nombre_usuario, puntaje):
     lineas = apertura.write(f"\n{nombre_usuario}, {puntaje}")
     apertura.close()
 
-    """lineas = archivo.read()
-
-    for linea in lineas:
-
-        linea.strip().split(",")
-
-        print(linea)
-        print(linea[0])
-        print(linea[1])
-        if linea[1] >= puntaje:
-
-            archivo.write(f"{linea[0]}, {linea[1]}\n")
-
-            pass
-
-        elif linea[1] < puntaje:
-
-            archivo.write(nombre_usuario + "," + puntaje + "\n")
-            archivo.write(f"{linea[0]}, {linea[1]}\n")
-            archivo.close()"""
 
 def mostrar_ranking():
 
-    ruta = os.path.join("ranking_T0-IIC223.txt")
+    ruta = os.path.join("ranking_T0-IIC2233.txt")
 
-    apertura = open(ruta, "r+")
+    apertura = open(ruta, "r")
     lineas = apertura.readlines()
 
     orden = []
 
-    for linea in range(len(lineas)):
+    i = 0
+
+    for linea in lineas:
 
         orden.append(linea.strip().split(","))
+        ordenada = sorted(orden, key=ordenar, reverse=True)
+        #orden.sort(key = ordenar(orden[i][1]), Reverse = True)
 
-    orden.sort(key = ordenar(orden))
+        i += 1
 
     for linea_orden in range(0,11):
         
-        print(f"{orden[linea_orden][0]}, {orden[linea_orden][1]}")
+        print(f"{ordenada[linea_orden][0]}, {ordenada[linea_orden][1]}")
 
     apertura.close()
 
 
-def ordenar(orden):
-
-    return orden[1]
+def ordenar(line):
+    
+    return line[1]
