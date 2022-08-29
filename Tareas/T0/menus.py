@@ -48,17 +48,17 @@ def menu_de_inicio():
             path_partida = os.path.join("partidas", nombre_archivo)
 
 
-        largo_tablero = input("Ingrese el largo del tablero (debe ser un número entero entre 3 y 15): ")
+        largo_tablero = input("Ingrese el largo del tablero (número entero entre 3 y 15): ")
 
         while  not largo_tablero.isdigit() or (int(largo_tablero) < 3 or int(largo_tablero) > 15):
             print("El largo debe ser un número entre 3 y 15")
-            largo_tablero = input("Ingrese el largo del tablero (debe ser un número entero entre 3 y 15): ")
+            largo_tablero = input("Ingrese el largo del tablero (número entero entre 3 y 15): ")
 
-        ancho_tablero = input("Ingrese el ancho del tablero (debe ser un número entero entre 3 y 15): ")
+        ancho_tablero = input("Ingrese el ancho del tablero (número entero entre 3 y 15): ")
 
         while not ancho_tablero.isdigit() or int(ancho_tablero) < 3 or int(ancho_tablero) > 15:
             print("El ancho debe ser un número entre 3 y 15")
-            ancho_tablero = input("Ingrese el ancho del tablero (debe ser un número entero entre 3 y 15): ")
+            ancho_tablero = input("Ingrese el ancho del tablero (número entero entre 3 y 15): ")
 
         largo_tablero = int(largo_tablero)
         ancho_tablero = int(ancho_tablero)

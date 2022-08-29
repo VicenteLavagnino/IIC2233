@@ -16,7 +16,8 @@ class Juego:
         self.path_archivo = os.path.join("partidas", self.nombre_archivo)
         self.largo_tablero = math.ceil(largo_tablero)
         self.ancho_tablero = math.ceil(ancho_tablero)
-        self.cantidad_bestias = math.ceil(int(self.largo_tablero * self.ancho_tablero * parametros.PROB_BESTIA))
+        self.cantidad_bestias = \
+            math.ceil(int(self.largo_tablero * self.ancho_tablero * parametros.PROB_BESTIA))
         self.tablero = []
         self.tablero_jugador = []
         self.ubicacion_bestias = []
@@ -48,7 +49,9 @@ class Juego:
 
         partida = open(self.path_archivo, "w")
 
-        lineas = partida.write(f"{self.nombre_usuario}, {self.largo_tablero}, {self.ancho_tablero}\n")
+        lineas = partida.write(f"{self.nombre_usuario}, \
+            {self.largo_tablero}, {self.ancho_tablero}\n")
+
         lineas = partida.write(f"{self.cantidad_bestias}\n")
         lineas = partida.write(f"{self.tablero}\n")
         lineas = partida.write(f"{self.ubicacion_bestias}\n")
@@ -91,7 +94,8 @@ class Juego:
                 
     def actualizar_puntaje(self):
 
-        self.puntaje = self.cantidad_bestias * len(self.casillas_descubiertas) * parametros.POND_PUNT
+        self.puntaje = \
+            self.cantidad_bestias * len(self.casillas_descubiertas) * parametros.POND_PUNT
 
     
     def descubrir_sector(self):
@@ -100,14 +104,16 @@ class Juego:
 
         # arregalr is digit y perdir antes int en todo caso
 
-        while not X_casilla_por_descubrir.isdigit() or int(X_casilla_por_descubrir) > self.largo_tablero or int(X_casilla_por_descubrir) < 0:
+        while not X_casilla_por_descubrir.isdigit() or \
+            int(X_casilla_por_descubrir) > self.largo_tablero or int(X_casilla_por_descubrir) < 0:
             
             print("La coordenada X debe ser un número entero menor que ", self.largo_tablero - 1)
             X_casilla_por_descubrir = input("Ingrese la coordenada X de la casilla por descubrir: ")
 
         Y_casilla_por_descubrir = input("Ingrese la coordenada Y de la casilla por descubrir: ")
 
-        while not (Y_casilla_por_descubrir).isdigit() or int(Y_casilla_por_descubrir) > self.ancho_tablero or int(Y_casilla_por_descubrir) < 0:
+        while not (Y_casilla_por_descubrir).isdigit() or \
+            int(Y_casilla_por_descubrir) > self.ancho_tablero or int(Y_casilla_por_descubrir) < 0:
             
             print("La coordenada Y debe ser un número entero menor que ", self.ancho_tablero - 1)
             Y_casilla_por_descubrir = input("Ingrese la coordenada Y de la casilla por descubrir: ")
@@ -145,7 +151,8 @@ class Juego:
 
             if X_casilla_por_descubrir != 0 or X_casilla_por_descubrir <= self.largo_tablero - 1:
                 
-                if Y_casilla_por_descubrir != 0 or Y_casilla_por_descubrir <= self.ancho_tablero - 1:
+                if Y_casilla_por_descubrir != 0 or \
+                    Y_casilla_por_descubrir <= self.ancho_tablero - 1:
 
                     if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
@@ -289,7 +296,8 @@ class Juego:
 
 
             self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir] = casillas_con_bestias
-            self.tablero_jugador[Y_casilla_por_descubrir][X_casilla_por_descubrir] = casillas_con_bestias
+            self.tablero_jugador[Y_casilla_por_descubrir][X_casilla_por_descubrir] = \
+                casillas_con_bestias
 
             self.casillas_descubiertas.append([X_casilla_por_descubrir, Y_casilla_por_descubrir])
 
@@ -314,7 +322,7 @@ class Juego:
 
         opcion_juego = int(input("Ingrese una opción: "))
 
-        while opcion_juego != 1 and opcion_juego != 2 and opcion_juego != 3  and opcion_juego != 4 and opcion_juego != 0:
+        while opcion_juego not in [1, 2, 3, 4, 0]:
             print("\n")
             print("Su respuesta debe ser 1, 2, 3 o 0")
             opcion_juego = int(input("Ingrese una opción: "))
