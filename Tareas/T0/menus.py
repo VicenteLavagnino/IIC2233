@@ -100,15 +100,7 @@ def menu_de_inicio():
         
         print("Abriendo ranking de puntajes...")
 
-        ruta = os.path.join("ranking_T0-IIC2233.txt")
-
-        apertura = open(ruta, "r")
-        lineas = apertura.readlines()
-
-        for linea in lineas:
-            print(linea)
-        
-        apertura.close()
+        mostrar_ranking()
 
         print("Volviendo al menú principal...")
         
@@ -126,30 +118,53 @@ def actualizar_ranking(nombre_usuario, puntaje):
 
     ruta = os.path.join("ranking_T0-IIC2233.txt")
 
-    archivo = open(ruta, "wt")
-    lineas = archivo.readlines()
+    apertura = open(ruta, "a")
+    lineas = apertura.write(f"\n{nombre_usuario}, {puntaje}")
+    apertura.close()
 
-    for linea in range(0,9):
+    """lineas = archivo.read()
 
-        linea.split(",")
+    for linea in lineas:
 
+        linea.strip().split(",")
+
+        print(linea)
+        print(linea[0])
+        print(linea[1])
         if linea[1] >= puntaje:
+
+            archivo.write(f"{linea[0]}, {linea[1]}\n")
 
             pass
 
         elif linea[1] < puntaje:
 
             archivo.write(nombre_usuario + "," + puntaje + "\n")
-            archivo.close()
+            archivo.write(f"{linea[0]}, {linea[1]}\n")
+            archivo.close()"""
 
 def mostrar_ranking():
 
     ruta = os.path.join("ranking_T0-IIC223.txt")
 
-    apertura = open(ruta, "r")
+    apertura = open(ruta, "r+")
     lineas = apertura.readlines()
 
-    for linea in lineas:
-        print(linea)
+    orden = []
+
+    for linea in range(len(lineas)):
+
+        orden.append(linea.strip().split(","))
+
+    orden.sort(key = ordenar(orden))
+
+    for linea_orden in range(0,11):
         
+        print(f"{orden[linea_orden][0]}, {orden[linea_orden][1]}")
+
     apertura.close()
+
+
+def ordenar(orden):
+
+    return orden[1]

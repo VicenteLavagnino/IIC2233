@@ -100,9 +100,8 @@ class Juego:
     
     def descubrir_sector(self):
 
+        print("Asumiendo A = 0, B = 1 ...")
         X_casilla_por_descubrir = input("Ingrese la coordenada X de la casilla por descubrir: ")
-
-        # arregalr is digit y perdir antes int en todo caso
 
         while not X_casilla_por_descubrir.isdigit() or \
             int(X_casilla_por_descubrir) > self.largo_tablero or int(X_casilla_por_descubrir) < 0:
@@ -334,6 +333,7 @@ class Juego:
 
         elif opcion_juego == 2:
             
+            self.actualizar_puntaje()
             self.guardar_partida()
             print("Partida guardada")
 
