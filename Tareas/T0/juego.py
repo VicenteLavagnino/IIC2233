@@ -58,6 +58,7 @@ class Juego:
         lineas = partida.write(f"{self.tablero_jugador}\n")
 
         partida.close()
+        menus.actualizar_ranking(self.nombre_usuario, self.puntaje)
 
     def generar_tablero(self):
         
@@ -71,8 +72,7 @@ class Juego:
                 nueva_fila.append(nueva_columna)
             
             self.tablero.append(nueva_fila)
-        
-        self.tablero_jugador = self.tablero
+            self.tablero_jugador.append(nueva_fila.copy())
 
     def llenar_bestias(self):
 
@@ -105,7 +105,7 @@ class Juego:
             print("La coordenada X debe ser un número entero menor que ", self.largo_tablero - 1)
             X_casilla_por_descubrir = input("Ingrese la coordenada X de la casilla por descubrir: ")
 
-        Y_casilla_por_descubrir = input("Ingrese la coordenada X de la casilla por descubrir: ")
+        Y_casilla_por_descubrir = input("Ingrese la coordenada Y de la casilla por descubrir: ")
 
         while not (Y_casilla_por_descubrir).isdigit() or int(Y_casilla_por_descubrir) > self.ancho_tablero or int(Y_casilla_por_descubrir) < 0:
             
@@ -121,7 +121,7 @@ class Juego:
 
             print("En el sector se encuentra una bestia")
             print("Perdiste")
-            print()
+            print("\n")
 
             print("nombre de usuario: ", self.nombre_usuario)
             print("Puntaje final: ", self.puntaje)
@@ -143,153 +143,153 @@ class Juego:
 
             casillas_con_bestias = 0
 
-            if X_casilla_por_descubrir != 0 or X_casilla_por_descubrir != self.largo_tablero:
+            if X_casilla_por_descubrir != 0 or X_casilla_por_descubrir <= self.largo_tablero - 1:
                 
-                if Y_casilla_por_descubrir != 0 or Y_casilla_por_descubrir != self.ancho_tablero:
+                if Y_casilla_por_descubrir != 0 or Y_casilla_por_descubrir <= self.ancho_tablero - 1:
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
 
                 elif Y_casilla_por_descubrir == 0:
                     
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
                      
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
           
-                elif Y_casilla_por_descubrir == self.ancho_tablero:
+                elif Y_casilla_por_descubrir <= self.ancho_tablero - 1:
                     
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
 
             elif X_casilla_por_descubrir == 0:
 
-                if Y_casilla_por_descubrir != 0 or Y_casilla_por_descubrir != self.ancho_tablero:
+                if Y_casilla_por_descubrir != 0 or Y_casilla_por_descubrir <= self.ancho_tablero - 1:
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
      
                 elif Y_casilla_por_descubrir == 0:
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
                 
-                elif Y_casilla_por_descubrir == self.ancho_tablero:
+                elif Y_casilla_por_descubrir <= self.ancho_tablero - 1:
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir]== 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir + 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir + 1] == 'N':
                         casillas_con_bestias += 1
 
-            elif X_casilla_por_descubrir == self.largo_tablero:
+            elif X_casilla_por_descubrir <= self.largo_tablero - 1:
 
-                if Y_casilla_por_descubrir != 0 or Y_casilla_por_descubrir != self.ancho_tablero:
+                if Y_casilla_por_descubrir != 0 or Y_casilla_por_descubrir >= self.ancho_tablero - 1:
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir] == 'N':
-                        casillas_con_bestias += 1
-                    
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir] == 'N':
+                        casillas_con_bestias += 1
+                    
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
                 elif Y_casilla_por_descubrir == 0:
                     
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
 
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir + 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir + 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
                 
-                elif Y_casilla_por_descubrir == self.ancho_tablero:
+                elif Y_casilla_por_descubrir <= self.ancho_tablero - 1:
                     
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir] == 'N':
                         casillas_con_bestias += 1
                     
-                    if self.tablero[X_casilla_por_descubrir - 1][Y_casilla_por_descubrir - 1] == 'N':
+                    if self.tablero[Y_casilla_por_descubrir - 1][X_casilla_por_descubrir - 1] == 'N':
                         casillas_con_bestias += 1
 
 
-            self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir] = casillas_con_bestias
-            self.tablero_jugador[X_casilla_por_descubrir][Y_casilla_por_descubrir] = casillas_con_bestias
+            self.tablero[Y_casilla_por_descubrir][X_casilla_por_descubrir] = casillas_con_bestias
+            self.tablero_jugador[Y_casilla_por_descubrir][X_casilla_por_descubrir] = casillas_con_bestias
 
             self.casillas_descubiertas.append([X_casilla_por_descubrir, Y_casilla_por_descubrir])
 
@@ -314,7 +314,7 @@ class Juego:
 
         opcion_juego = int(input("Ingrese una opción: "))
 
-        while opcion_juego != 1 and opcion_juego != 2 and opcion_juego != 3 and opcion_juego != 0:
+        while opcion_juego != 1 and opcion_juego != 2 and opcion_juego != 3  and opcion_juego != 4 and opcion_juego != 0:
             print("\n")
             print("Su respuesta debe ser 1, 2, 3 o 0")
             opcion_juego = int(input("Ingrese una opción: "))

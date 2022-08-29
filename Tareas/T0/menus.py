@@ -80,7 +80,7 @@ def menu_de_inicio():
         nombre_usuario = input("nombre de usuario: ")
 
         nombre_archivo = nombre_usuario + ".txt"
-        path_partida = os.join("partidas", nombre_archivo)
+        path_partida = os.path.join("partidas", nombre_archivo)
 
         if not os.path.isfile(path_partida):
             
@@ -91,9 +91,9 @@ def menu_de_inicio():
         
         else:
 
+            juego.Juego.cargar_partida(nombre_usuario)
             partida = juego.Juego(nombre_usuario, largo_tablero, ancho_tablero)
-            partida.cargar_partida(nombre_usuario)
-
+            
             return partida.menu_de_juego()
     
     elif opcion == 3:
