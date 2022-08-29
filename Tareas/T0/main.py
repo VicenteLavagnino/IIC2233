@@ -1,6 +1,5 @@
 import menus
 import juego
 
-menus.Menu_de_inicio()
-
+menus.menu_de_inicio()
 
