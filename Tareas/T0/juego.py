@@ -18,6 +18,7 @@ class Juego:
         self.ancho_tablero = math.ceil(ancho_tablero)
         self.cantidad_bestias = math.ceil(int(self.largo_tablero * self.ancho_tablero * parametros.PROB_BESTIA))
         self.tablero = []
+        self.tablero_jugador = []
         self.ubicacion_bestias = []
         self.puntaje = 0
         self.casillas_descubiertas = []
@@ -34,10 +35,12 @@ class Juego:
         self.largo_tablero = int(lineas[0][1])
         self.ancho_tablero = int(lineas[0][2])
         self.cantidad_bestias = int(lineas[1])
-        self.tablero = int[lineas[2]]
-        self.ubicacion_bestias = int[lineas[3]]
+        self.tablero = lineas[2]
+        self.ubicacion_bestias = lineas[3]
         self.puntaje = int(lineas[4])
         self.casillas_descubiertas = int(lineas[5])
+        
+        self.tablero_jugador = lineas[6]
 
         partida.close()
 
@@ -52,12 +55,7 @@ class Juego:
         lineas = partida.write(f"{self.puntaje}\n")
         lineas = partida.write(f"{self.casillas_descubiertas}\n")
         
-        #   lineas[0] = "{self.nombre_usuario}, {self.largo_tablero}, {self.ancho_tablero}"
-        #   lineas[1] = self.cantidad_bestias
-        #   lineas[2] = self.tablero
-        #   lineas[3] = self.ubicacion_bestias
-        #   lineas[4] = self.puntaje
-        #   lineas[5] = self.casillas_descubiertas
+        lineas = partida.write(f"{self.tablero_jugador}\n")
 
         partida.close()
 
@@ -73,10 +71,12 @@ class Juego:
                 nueva_fila.append(nueva_columna)
             
             self.tablero.append(nueva_fila)
+        
+        self.tablero_jugador = self.tablero
 
     def llenar_bestias(self):
 
-        for bestia in range(self.cantidad_bestias - 1):
+        for bestia in range(self.cantidad_bestias):
                 
                 X = random.randint(0, self.largo_tablero - 1)
                 Y = random.randint(0, self.ancho_tablero - 1)
@@ -86,7 +86,7 @@ class Juego:
                     X = random.randint(0, self.largo_tablero - 1)
                     Y = random.randint(0, self.ancho_tablero - 1)
                     
-                self.tablero[X][Y].append('N')
+                self.tablero[X][Y] = 'N'
                 self.ubicacion_bestias.append([X, Y])
                 
     def actualizar_puntaje(self):
@@ -289,6 +289,7 @@ class Juego:
 
 
             self.tablero[X_casilla_por_descubrir][Y_casilla_por_descubrir] = casillas_con_bestias
+            self.tablero_jugador[X_casilla_por_descubrir][Y_casilla_por_descubrir] = casillas_con_bestias
 
             self.casillas_descubiertas.append([X_casilla_por_descubrir, Y_casilla_por_descubrir])
 
@@ -297,7 +298,7 @@ class Juego:
 
     def menu_de_juego(self):
 
-        tablero.print_tablero_con_utf8(self.tablero) #arreglar el utf8
+        tablero.print_tablero_con_utf8(self.tablero_jugador) #arreglar el utf8
 
         print("Seleccione una acción:\n")
 
@@ -305,7 +306,7 @@ class Juego:
         print("[2] Guardar la partida") #preguntar si desea Salir
         print("[3] Salir de la partida") #con o sin guardar VER SI VOLVER AL MENU O SALIR
         print("[4] Atrás")
-        print("\n)")
+        print("\n")
         print("[0] Salir del juego")
         
         print("\n")
@@ -380,7 +381,7 @@ class Juego:
             menus.menu_de_inicio()
 
         elif opcion_juego == 0:
-            print("Saliento del juego")
+            print("Saliendo del juego")
             exit()
 
         self.menu_de_juego()
