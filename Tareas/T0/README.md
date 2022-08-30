@@ -55,18 +55,17 @@ El módulo principal de la tarea a ejecutar es  ```main.py```. Además se debe c
 ### Librerías externas utilizadas
 La lista de librerías externas que utilicé fue la siguiente:
 
-1. ```librería_1```: ```función() / módulo```
-2. ```librería_2```: ```función() / módulo``` (debe instalarse)
-3. ...
+1. ```curses.ascii```: Contiene a ```isdigit()``
+2. ```genericpath```: Contiene a ```isfile()``
+3. ```os```: Hecha para navegar de mejor manera entre directorios y manejar archivos
+4. ```random```: Contiene a ```randint()`` para aleatorizar la ubicación del las bestias
+5. ```math```: Contiene a ```ceil()``
 
 ### Librerías propias
 Por otro lado, los módulos que fueron creados fueron los siguientes:
 
-1. ```curses.ascii```: Contiene a ```isdigit()``
-2. ```genericpath```: Contiene a ```isfile()``
-3. ```os```: Hecha para navegar de mejor manera entre directorios y manejar archivos
-3. ```random```: Contiene a ```randint()`` para aleatorizar la ubicación del las bestias
-3. ```math```: Contiene a ```ceil()``
+1. ```menus.py```: Contiene a ```menu_de_inicio()`` y las funciones para actualizar y visualizar el ranking.
+2. ```juego.py```: Contiene a la clase ```Juego``, donde están todos los atributos y métodos necesarios para el operar el juego.
 
 
 ## Supuestos y consideraciones adicionales :thinking:
