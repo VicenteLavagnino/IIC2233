@@ -55,11 +55,11 @@ El módulo principal de la tarea a ejecutar es  ```main.py```. Además se debe c
 ### Librerías externas utilizadas
 La lista de librerías externas que utilicé fue la siguiente:
 
-1. ```curses.ascii```: Contiene a ```isdigit()``
-2. ```genericpath```: Contiene a ```isfile()``
+1. ```curses.ascii```: Contiene a ```isdigit()```
+2. ```genericpath```: Contiene a ```isfile()```
 3. ```os```: Hecha para navegar de mejor manera entre directorios y manejar archivos
-4. ```random```: Contiene a ```randint()`` para aleatorizar la ubicación del las bestias
-5. ```math```: Contiene a ```ceil()``
+4. ```random```: Contiene a ```randint()``` para aleatorizar la ubicación del las bestias
+5. ```math```: Contiene a ```ceil()```
 
 ### Librerías propias
 Por otro lado, los módulos que fueron creados fueron los siguientes:
