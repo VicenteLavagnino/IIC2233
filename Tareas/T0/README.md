@@ -24,28 +24,31 @@ Explicación: mantén el emoji correspondiente, de manera honesta, para cada ite
 - ✅ si completaste **correctamente** lo pedido
 - 🟠 si el item está **incompleto** o tiene algunos errores
 #### Programación Orientada a Objetos (18pts) (22%%)
-##### ❌✅🟠 Menú de Inicio
-##### ❌✅🟠 Funcionalidades		
-##### ❌✅🟠 Puntajes
+##### ✅ Menú de Inicio
+##### ✅ Funcionalidades		
+##### ✅ Puntajes
 #### Flujo del Juego (30pts) (36%) 
-##### ❌✅🟠 Menú de Juego
-##### ❌✅🟠 Tablero		
-##### ❌✅🟠 Bestias	
-##### ❌✅🟠 Guardado de partida		
+##### ✅ Menú de Juego
+##### ✅ Tablero		
+##### ✅ Bestias	
+##### ✅ Guardado de partida		
 #### Término del Juego 14pts (17%)
-##### ❌✅🟠 Fin del juego	
-##### ❌✅🟠 Puntajes	
+##### ✅ Fin del juego	
+##### ✅ Puntajes	
 #### Genera: 15 pts (15%)
-##### ❌✅🟠 Menús
-##### ❌✅🟠 Parámetros
-##### ❌✅🟠 PEP-8
+##### ✅ Menús
+##### ✅ Parámetros
+##### ✅ PEP-8
+
 #### Bonus: 3 décimas
-##### ❌✅🟠 
+##### ❌
+
 ## Ejecución :computer:
-El módulo principal de la tarea a ejecutar es  ```archivo.py```. Además se debe crear los siguientes archivos y directorios adicionales:
-1. ```archivo.ext``` en ```ubicación```
-2. ```directorio``` en ```ubicación```
-3. ...
+El módulo principal de la tarea a ejecutar es  ```main.py```. Además se debe crear los siguientes archivos y directorios adicionales, de todos modos esto fueron incluidos en el último ```push``` para un correcto funcionamiento y comprensión del código :
+
+1. ```ranking_T0-IIC2233.txt``` en ```ubicación```
+2. carpeta ```partidas``` en carpeta ```T0```
+
 
 
 ## Librerías :books:
@@ -59,53 +62,29 @@ La lista de librerías externas que utilicé fue la siguiente:
 ### Librerías propias
 Por otro lado, los módulos que fueron creados fueron los siguientes:
 
-1. ```librería_1```: Contiene a ```ClaseA```, ```ClaseB```, (ser general, tampoco es necesario especificar cada una)...
-2. ```librería_2```: Hecha para <insertar descripción **breve** de lo que hace o qué contiene>
-3. ...
+1. ```curses.ascii```: Contiene a ```isdigit()``
+2. ```genericpath```: Contiene a ```isfile()``
+3. ```os```: Hecha para navegar de mejor manera entre directorios y manejar archivos
+3. ```random```: Contiene a ```randint()`` para aleatorizar la ubicación del las bestias
+3. ```math```: Contiene a ```ceil()``
+
 
 ## Supuestos y consideraciones adicionales :thinking:
 Los supuestos que realicé durante la tarea son los siguientes:
 
-1. <Descripción/consideración 1 y justificación del por qué es válido/a> 
-2. <Descripción/consideración 2 y justificación del por qué es válido/a>
-3. ...
+1. <Utilicé el sistema de coordenadas como [X,Y] siendo ambos números enteros, declarando un print para orientar al usuario y facilitar la operación del código en lugar de utiliar el sistema [Letra, Número] > 
+2. <El sistema de ranking presenta el orden en formato descendente según puntaje de la forma: ```nombre jugador```, ```puntaje obtenido```>
 
-PD: <una última consideración (de ser necesaria) o comentario hecho anteriormente que se quiera **recalcar**>
 
 
 -------
 
 
-
-**EXTRA:** si van a explicar qué hace específicamente un método, no lo coloquen en el README mismo. Pueden hacerlo directamente comentando el método en su archivo. Por ejemplo:
-
-```python
-class Corrector:
-
-    def __init__(self):
-          pass
-
-    # Este método coloca un 6 en las tareas que recibe
-    def corregir(self, tarea):
-        tarea.nota  = 6
-        return tarea
-```
-
-Si quieren ser más formales, pueden usar alguna convención de documentación. Google tiene la suya, Python tiene otra y hay muchas más. La de Python es la [PEP287, conocida como reST](https://www.python.org/dev/peps/pep-0287/). Lo más básico es documentar así:
-
-```python
-def funcion(argumento):
-    """
-    Mi función hace X con el argumento
-    """
-    return argumento_modificado
-```
-Lo importante es que expliquen qué hace la función y que si saben que alguna parte puede quedar complicada de entender o tienen alguna función mágica usen los comentarios/documentación para que el ayudante entienda sus intenciones.
-
 ## Referencias de código externo :book:
 
-Para realizar mi tarea saqué código de:
-1. \<https://gist.github.com/JIGutierrez/77864621a0c674f02c55b869429fc8a9>: este hace \<que pueda contar las minas de alrededor> y está implementado en el archivo <juego.py> en las líneas <78 (provisoriamente)> y hace <que pueda contar las minas cercanas a la casilla>
+Para realizar mi tarea no saqué código de ningun sitio en específico, sin embargo utilicé ciertos códigos para inspirar la estructura:
+1. \<https://stackoverflow.com/questions/23051062/open-files-in-rt-and-wt-modes>: este hace \<que pueda sobreescribir archivos.txt> y está implementado en el archivo <menus.py> en las líneas <121> y hace <que pueda sobre escribir>
+2. \<https://class.mimir.io/my_grades/bb859e31-9c35-4d52-ab74-866efe3f2308>: esta es mi cuenta de Mimir que usé para Introducción a la programación y recurrí en algunas ocasiones a ella para \<recordar conceptos aprendidos>.
 
 
 
