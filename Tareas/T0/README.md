@@ -64,8 +64,8 @@ La lista de librerías externas que utilicé fue la siguiente:
 ### Librerías propias
 Por otro lado, los módulos que fueron creados fueron los siguientes:
 
-1. ```menus.py```: Contiene a ```menu_de_inicio()`` y las funciones para actualizar y visualizar el ranking.
-2. ```juego.py```: Contiene a la clase ```Juego``, donde están todos los atributos y métodos necesarios para el operar el juego.
+1. ```menus.py```: Contiene a ```menu_de_inicio()``` y las funciones para actualizar y visualizar el ranking.
+2. ```juego.py```: Contiene a la clase ```Juego```, donde están todos los atributos y métodos necesarios para el operar el juego.
 
 
 ## Supuestos y consideraciones adicionales :thinking:
