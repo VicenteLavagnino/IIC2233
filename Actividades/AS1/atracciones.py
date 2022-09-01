@@ -1,4 +1,5 @@
 from random import randint, choice, random
+import re
 from fauna import Carnivoro, Herbivoro, Omnivoro
 from parametros import MULTIPLICADOR_RECAUDACION, EVENTO_HERBIVOROS \
                         ,EVENTO_CARNIVOROS, FEROCIDAD, ADORABILIDAD \
@@ -33,37 +34,43 @@ class Atraccion(ABC):
         return random.randint(VISITANTES[0], VISITANTES[1])
 
     # MODIFICAR
-    #arreglarrrrrrrrrrrrrrrrrrrrrrrrrr
     @property.getter
     def recaudacion(self):
         dinero = 0
 
         for animal in self.animales:
-            animal.alimentarse()
+            animal.exhibicion()
             dinero += animal.ganancia_actual
 
         dinero = dinero * self.visitantes * MULTIPLICADOR_RECAUDACION
 
+        if random.random() > PROBABILIDAD_EVENTO:
+            dinero += self.evento()
+
         return dinero
 
     # MODIFICAR   
+    @abstractmethod
     def crear_animales(self) -> int:
         pass
       
     # MODIFICAR  
+    @abstractmethod
     def __str__(self):
         pass
 
     # MODIFICAR
+    @abstractmethod
     def evento(self):
         pass
 
 
 # MODIFICAR
-class GranjaHerbivoros:
+class GranjaHerbivoros(Atraccion):
 
     # MODIFICAR
     def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         pass
 
     def crear_animales(self):
@@ -79,18 +86,21 @@ class GranjaHerbivoros:
 
     # MODIFICAR
     def __str__(self):
-        pass
+        return f"Granja de Herbivoros {self.numero}"
+
     
     # MODIFICAR
     def evento(self):
-        pass
+        print(f"\nEVENTO {self}: AVISTAMIENTO DE BRACHIOSAURUS\n ")
+        return EVENTO_HERBIVOROS
         
 
 # MODIFICAR
-class PaseoCarnivoros:
+class PaseoCarnivoros(Atraccion):
 
     # MODIFICAR
     def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         pass
 
     def crear_animales(self):
@@ -106,8 +116,11 @@ class PaseoCarnivoros:
 
     # MODIFICAR
     def __str__(self):
+        return f"Paseo de Carnivoros {self.numero}"
         pass
     
     # MODIFICAR
     def evento(self):
+        print(f"\nEVENTO {self}: SE ALIMENTARA AL TYRANOSAURUS\n ")
+        return EVENTO_CARNIVOROS
         pass
