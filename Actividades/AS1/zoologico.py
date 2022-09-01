@@ -32,12 +32,12 @@ class DCCentralZoo:
     def calcular_estadisticas(self) -> tuple:
 
         for atraccion in self.atracciones_herbivoros:
-            self.recaudacion_total += atraccion.recaudacion()
-            self.visitantes_totales += atraccion.visitantes()
+            self.recaudacion_total += atraccion.recaudacion
+            self.visitantes_totales += atraccion.visitantes
         
         for atraccion in self.atracciones_carnivoros:
-            self.recaudacion_total += atraccion.recaudacion()
-            self.visitantes_totales += atraccion.visitantes()
+            self.recaudacion_total += atraccion.recaudacion
+            self.visitantes_totales += atraccion.visitantes
 
         return (self.visitantes_totales, self.recaudacion_total)
 
