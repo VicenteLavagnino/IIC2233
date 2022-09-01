@@ -6,7 +6,10 @@ from parametros import MULTIPLICADOR_RECAUDACION, EVENTO_HERBIVOROS \
 
 
 # MODIFICAR
-class Atraccion:
+
+from abc import ABC, abstractmethod
+import fauna
+class Atraccion(ABC):
 
     def __init__(self, numero):
         self.id = numero
@@ -25,15 +28,26 @@ class Atraccion:
             animal.alimentarse()
 
     # MODIFICAR
-    def visitantes(self):
-        pass
+    @property.getter
+    def visitantes(self) -> int:
+        return random.randint(VISITANTES[0], VISITANTES[1])
 
     # MODIFICAR
+    #arreglarrrrrrrrrrrrrrrrrrrrrrrrrr
+    @property.getter
     def recaudacion(self):
-        pass
+        dinero = 0
+
+        for animal in self.animales:
+            animal.alimentarse()
+            dinero += animal.ganancia_actual
+
+        dinero = dinero * self.visitantes * MULTIPLICADOR_RECAUDACION
+
+        return dinero
 
     # MODIFICAR   
-    def crear_animales(self):
+    def crear_animales(self) -> int:
         pass
       
     # MODIFICAR  

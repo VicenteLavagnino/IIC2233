@@ -7,7 +7,7 @@ from parametros import INCREMENTO_FEROCIDAD, MAX_EX_CARNIVORO, MAX_EX_HERVIBORO,
 
 from abc import ABC, abstractmethod
 import random
-class Animal:
+class Animal(ABC):
 
     # MODIFICAR
     def __init__(self, especie: str, **kwargs):
