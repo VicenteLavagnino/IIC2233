@@ -9,6 +9,7 @@ from parametros import MULTIPLICADOR_RECAUDACION, EVENTO_HERBIVOROS \
 # MODIFICAR
 
 from abc import ABC, abstractmethod
+import random
 import fauna
 class Atraccion(ABC):
 
@@ -29,12 +30,12 @@ class Atraccion(ABC):
             animal.alimentarse()
 
     # MODIFICAR
-    @property.getter
+    @property
     def visitantes(self) -> int:
         return random.randint(VISITANTES[0], VISITANTES[1])
 
     # MODIFICAR
-    @property.getter
+    @property
     def recaudacion(self):
         dinero = 0
 
@@ -86,7 +87,7 @@ class GranjaHerbivoros(Atraccion):
 
     # MODIFICAR
     def __str__(self):
-        return f"Granja de Herbivoros {self.numero}"
+        return f"Granja de Herbivoros {self.id}"
 
     
     # MODIFICAR
@@ -116,7 +117,7 @@ class PaseoCarnivoros(Atraccion):
 
     # MODIFICAR
     def __str__(self):
-        return f"Paseo de Carnivoros {self.numero}"
+        return f"Paseo de Carnivoros {self.id}"
         pass
     
     # MODIFICAR

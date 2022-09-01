@@ -1,3 +1,4 @@
+import imp
 from random import choice, randint
 from atracciones import GranjaHerbivoros, PaseoCarnivoros
 from parametros import RANGO_INCUBACION, RECAUDACION_CONSTRUCCION, N_GRANJAS \
@@ -24,8 +25,21 @@ class DCCentralZoo:
             atraccion.alimentar_animales()
 
     # MODIFICAR
-    def calcular_estadisticas(self):
-        pass
+
+    import atracciones
+    import fauna
+
+    def calcular_estadisticas(self) -> tuple:
+
+        for atraccion in self.atracciones_herbivoros:
+            self.recaudacion_total += atraccion.recaudacion()
+            self.visitantes_totales += atraccion.visitantes()
+        
+        for atraccion in self.atracciones_carnivoros:
+            self.recaudacion_total += atraccion.recaudacion()
+            self.visitantes_totales += atraccion.visitantes()
+
+        return (self.visitantes_totales, self.recaudacion_total)
 
     def construir_atraccion(self, tipo):
         if tipo == "carnivoros":

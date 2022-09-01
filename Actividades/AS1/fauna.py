@@ -12,7 +12,7 @@ class Animal(ABC):
     # MODIFICAR
     def __init__(self, especie: str, **kwargs):
 
-        self.especies = especie
+        self.especie = especie
         self.ganancia_actual = 0
 
         pass
@@ -59,9 +59,9 @@ class Carnivoro(Animal):
 class Herbivoro(Animal):
 
     # MODIFICAR
-    def __init__(self, especie: str, adorabilidad: int, **kwargs):
+    def __init__(self, adorabilidad: int, **kwargs):
         
-        super().__init__(especie, **kwargs)
+        super().__init__(**kwargs)
         self.adorabilidad = int(adorabilidad)
         self.ganancia_actual += GAN_HERBIVORO
         pass
