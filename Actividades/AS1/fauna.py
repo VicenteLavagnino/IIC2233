@@ -6,7 +6,7 @@ from parametros import INCREMENTO_FEROCIDAD, MAX_EX_CARNIVORO, MAX_EX_HERVIBORO,
 # MODIFICAR
 
 from abc import ABC, abstractmethod
-
+import random
 class Animal:
 
     # MODIFICAR
@@ -32,49 +32,68 @@ class Animal:
 
 
 # MODIFICAR
-class Carnivoro:
+class Carnivoro(Animal):
 
     # MODIFICAR
     def __init__(self, ferocidad, **kwargs):
+        
+        super().__init__(**kwargs)
+        self.ferocidad = int(ferocidad)
+        self.ganancia_actual += GAN_CARNIVORO
         pass
 
     # MODIFICAR
     def alimentarse(self):
         super().alimentarse()
+        self.ferocidad += INCREMENTO_FEROCIDAD
+        print(f"Animal {self.especie} se come un kilogramo de Carne") 
+
 
     # MODIFICAR
     def exhibicion(self):
         super().exhibicion()
+        self.ganancia_actual += self.ferocidad * random.randint(MIN_EX_CARNIVORO, MAX_EX_CARNIVORO)
 
 
 # MODIFICAR
-class Herbivoro:
+class Herbivoro(Animal):
 
     # MODIFICAR
-    def __init__(self, adorabilidad, **kwargs):
+    def __init__(self, especie: str, adorabilidad: int, **kwargs):
+        
+        super().__init__(especie, **kwargs)
+        self.adorabilidad = int(adorabilidad)
+        self.ganancia_actual += GAN_HERBIVORO
         pass
 
     # MODIFICAR
     def alimentarse(self):
         super().alimentarse()
+        self.adorabilidad += INCREMENTO_ADORABILIDAD
+        print(f"Animal {self.especie} se come un kilogramo de vegetales")
 
     # MODIFICAR
     def exhibicion(self):
         super().exhibicion()
-
+        self.ganancia_actual += self.adorabilidad * random.randint(MIN_EX_HERVIBORO, MAX_EX_HERVIBORO)
 
 # MODIFICAR
-class Omnivoro:
+class Omnivoro(Carnivoro, Herbivoro):
 
     # MODIFICAR
     def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         pass
 
     # MODIFICAR
+    #ver si modificar o no! #####################
     def alimentarse(self):
+        super().alimentarse()
         pass
 
     # MODIFICAR
+    #ver si modificar o no! #####################
     def exhibicion(self):
+        super().exhibicion()
         pass
 
