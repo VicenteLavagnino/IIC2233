@@ -69,7 +69,7 @@ def menu_inicio():
 def menu_entrenadores():
 
     print("\n" + "-" * 70)
-    print(" " * 20 + "*** Menu de entrenadores ***" + " " * 20)
+    print(" " * 20 + "*** Menu Entrenador ***" + " " * 20)
     print("-" * 70)
     print("\n")
 
