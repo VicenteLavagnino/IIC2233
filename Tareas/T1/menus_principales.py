@@ -3,6 +3,7 @@
 
 from curses.ascii import isdigit
 import os
+import file_entrenador
 
 def abrir_entrenadores():
     """funcion para abrir el archivo entrenadores.csv y almacenarlos en una lista"""
@@ -54,7 +55,7 @@ def menu_inicio():
         print(f"Su respuesta debe ser un numero entero entre 0 y {len(lista_entrenadores)}\n")
         eleccion = input("Ingrese el numero del entrenador que desea o 0 para Salir: ")
 
-    if eleccion.isdigit() and eleccion in range (0, len(lista_entrenadores)):
+    if eleccion.isdigit() and int(eleccion) in range (0, len(lista_entrenadores)):
         
         if eleccion == 0:
             print("Nos vemos en una próxima instancia")
@@ -64,9 +65,14 @@ def menu_inicio():
         else:
             print("entrenador seleccionado!")
             print("Avanzando al menu de entrenadores...\n")
+
+            return menu_entrenador(lista_entrenadores[int(eleccion)])
         
 
-def menu_entrenadores():
+def menu_entrenador(lista):
+
+    #construir Entrenador
+    entrenador = file_entrenador.Entrenador(lista)
 
     print("\n" + "-" * 70)
     print(" " * 20 + "*** Menu Entrenador ***" + " " * 20)
@@ -84,17 +90,39 @@ def menu_entrenadores():
 
     eleccion = input("Ingrese el numero del entrenador que desea o 0 para Salir: ")
 
-    while not eleccion.isdigit() or eleccion in range (0, 7):
+    while not eleccion.isdigit() or int(eleccion) in range (0, 7):
         print(f"Su respuesta debe ser un numero entero entre 0 y 7\n")
         eleccion = input("Ingrese el numero del entrenador que desea o 0 para Salir: ")
 
-    if eleccion.isdigit() and eleccion in range (0, 7):
+    if eleccion.isdigit() and int(eleccion) in range (0, 7):
         
-        if eleccion == 0:
+        if int(eleccion) == 0:
             print("Nos vemos en una próxima instancia")
             print("Saliendo...\n")
             exit()
+
+        elif int(eleccion) == 1:
+            print("Volviendo al menu de inicio...\n")
+            return menu_inicio()
         
-        else:
-            print("entrenador seleccionado!")
-            print("Avanzando al menu de entrenadores...\n")
+        elif int(eleccion) == 2:
+            print("Avanzando al menu de entrenamiento...\n")
+
+            pass
+
+        elif int(eleccion) == 3:
+            pass
+        
+        elif int(eleccion) == 4:
+            pass
+
+        elif int(eleccion) == 5:
+            pass
+
+        elif int(eleccion) == 6:
+            pass
+
+        elif int(eleccion) == 7:
+            pass
+
+

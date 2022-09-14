@@ -1,5 +1,7 @@
 #en este archivo se desarrolla la clase Liga Programon
 
+import file_entrenador
+
 class LigaProgramon:
     """Clase para crear una liga de programones"""
 
@@ -33,3 +35,12 @@ class LigaProgramon:
         print("Participantes: " + self.entrenadores)
         print("Ronda actual: " + self.ronda_actual)
         print("Entrenadores que siguen en la liga:" + LigaProgramon.continuan_en_liga())
+
+        # agregar : Luego de mostrar lo anterior,en caso de quedar más rondas, se volverá al Menú Entrenador. !!!!!!!
+        # En otro caso, se avisa el resultado, se reinicia el programa y se vuelve al Menú de Inicio. !!!!!!!!!!
+
+    def simular_ronda():
+        """Metodo para simular una ronda"""
+
+
+        pass
