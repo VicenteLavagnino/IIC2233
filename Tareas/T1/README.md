@@ -17,108 +17,67 @@ en cierta línea del código o comentar una función>
 
 ### Cosas implementadas y no implementadas :white_check_mark: :x:
 
-Explicación: mantén el emoji correspondiente, de manera honesta, para cada item. Si quieres, también puedes agregarlos a los títulos:
-- ❌ si **NO** completaste lo pedido
-- ✅ si completaste **correctamente** lo pedido
-- 🟠 si el item está **incompleto** o tiene algunos errores
 #### Programación Orientada a Objetos (18pts) (22%%)
-##### ❌✅🟠 Diagrama
-##### ❌✅🟠 Definición de clases, atributos, métodos y properties		
-##### ❌✅🟠 Relaciones entre clases
+##### ✅ Diagrama
+##### ✅ Definición de clases, atributos, métodos y properties		
+##### ✅ Relaciones entre clases
 #### Preparación programa: 11 pts (7%)			
-##### ❌✅🟠 Creación de partidas
+##### ✅ Creación de partidas
 #### Entidades: 28 pts (19%)
-##### ❌✅🟠 Programón
-##### ❌✅🟠 Entrenador		
-##### ❌✅🟠 Liga	
-##### ❌✅🟠 Objetos		
+##### ✅ Programón
+##### ✅ Entrenador		
+##### ✅ Liga	
+##### ✅ Objetos		
 #### Interacción Usuario-Programa 57 pts (38%)
-##### ❌✅🟠 General	
-##### ❌✅🟠 Menú de Inicio
-##### ❌✅🟠 Menú Entrenador
-##### ❌✅🟠 Menu Entrenamiento
-##### ❌✅🟠 Simulación ronda campeonato
-##### ❌✅🟠 Ver estado del campeonato
-##### ❌✅🟠 Menú crear objeto
-##### ❌✅🟠 Menú utilizar objeto
-##### ❌✅🟠 Ver estado del entrenador
-##### ❌✅🟠 Robustez
+#####  General	
+#####  Menú de Inicio
+##### ✅ Menú Entrenador
+##### ✅ Menu Entrenamiento
+##### 🟠 Simulación ronda campeonato
+##### ✅ Ver estado del campeonato
+##### 🟠 Menú crear objeto
+##### 🟠 Menú utilizar objeto
+##### ✅ Ver estado del entrenador
+##### ✅ Robustez
 #### Manejo de archivos: 12 pts (8%)
-##### ❌✅🟠 Archivos CSV
-##### ❌✅🟠 Parámetros
+##### ✅ Archivos CSV
+##### ✅ Parámetros
 #### Bonus: 5 décimas
-##### ❌✅🟠 Mega Evolución
-##### ❌✅🟠 CSV dinámico
+##### ❌ Mega Evolución
+##### ❌ CSV dinámico
 
 ## Ejecución :computer:
-El módulo principal de la tarea a ejecutar es  ```archivo.py```. Además se debe crear los siguientes archivos y directorios adicionales:
-1. ```archivo.ext``` en ```ubicación```
-2. ```directorio``` en ```ubicación```
-3. ...
-
+El módulo principal de la tarea a ejecutar es  ```main.py```. 
+Además se debe crear la carpeta ```datasets``` en ```T1``` la cual debe contener todos los archivos .csv
 
 ## Librerías :books:
 ### Librerías externas utilizadas
 La lista de librerías externas que utilicé fue la siguiente:
 
-1. ```librería_1```: ```función() / módulo```
-2. ```librería_2```: ```función() / módulo``` (debe instalarse)
+1. ```random```: ```randint(), choice(), random()```
+2. ```os```: ```path\```
 3. ...
 
 ### Librerías propias
 Por otro lado, los módulos que fueron creados fueron los siguientes:
 
-1. ```librería_1```: Contiene a ```ClaseA```, ```ClaseB```, (ser general, tampoco es necesario especificar cada una)...
-2. ```librería_2```: Hecha para <insertar descripción **breve** de lo que hace o qué contiene>
-3. ...
+1.```file_liga```: Contiene a ```Clase LigaProgramon```
+2.```file_objeto```: Contiene a ```Clase Objeto```
+3.```file_entrenador_programon```: Contiene a ```Clase Programon``` y ```Clase Entrenador```   
+4.```menus principales``` Hecha para <correr los menus recurrentes del juego>
+.```menus secundarios``` Hecha para <correr los menus derivados del menu entrenador>
+6.```data``` Hecha para <abrir los archivos e instanciar su contenido>
+
 
 ## Supuestos y consideraciones adicionales :thinking:
 Los supuestos que realicé durante la tarea son los siguientes:
 
-1. <Descripción/consideración 1 y justificación del por qué es válido/a> 
-2. <Descripción/consideración 2 y justificación del por qué es válido/a>
-3. ...
-
-PD: <para una mejor organización de archivos, guardé todos los archivos de tipo csv entregados en una carpeta llamada datasets >
-PD: <para una mayor comidad en el código, se definió la opción "Salir" con el número 0 para todo caso>
-PD: <HASTA AHORA LA TAREA Y EL DIAGRAMA SE ENCUNTRAN INCOMPLETOS>
+1. <para una mejor organización de archivos, guardé todos los archivos de tipo csv entregados en una carpeta llamada datasets >
+2. <para una mayor comidad en el código, se definió la opción "Salir" con el número 0 para todo caso>
+3. <Existe una carpeta llamada ```diagrama_de_clases``` donde se muestra el diagrama y su explicación correspondiente >
 
 
 -------
-
-
-
-**EXTRA:** si van a explicar qué hace específicamente un método, no lo coloquen en el README mismo. Pueden hacerlo directamente comentando el método en su archivo. Por ejemplo:
-
-```python
-class Corrector:
-
-    def __init__(self):
-          pass
-
-    # Este método coloca un 6 en las tareas que recibe
-    def corregir(self, tarea):
-        tarea.nota  = 6
-        return tarea
-```
-
-Si quieren ser más formales, pueden usar alguna convención de documentación. Google tiene la suya, Python tiene otra y hay muchas más. La de Python es la [PEP287, conocida como reST](https://www.python.org/dev/peps/pep-0287/). Lo más básico es documentar así:
-
-```python
-def funcion(argumento):
-    """
-    Mi función hace X con el argumento
-    """
-    return argumento_modificado
-```
-Lo importante es que expliquen qué hace la función y que si saben que alguna parte puede quedar complicada de entender o tienen alguna función mágica usen los comentarios/documentación para que el ayudante entienda sus intenciones.
-
-## Referencias de código externo :book:
-
-Para realizar mi tarea saqué código de:
-1. \<link de código>: este hace \<lo que hace> y está implementado en el archivo <nombre.py> en las líneas <número de líneas> y hace <explicación breve de que hace>
-
-
 
 ## Descuentos
 La guía de descuentos se encuentra [link](https://github.com/IIC2233/Syllabus/blob/master/Tareas/Descuentos.md).

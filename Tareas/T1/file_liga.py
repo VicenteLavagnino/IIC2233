@@ -15,9 +15,10 @@ class LigaProgramon:
         self.perdedores = []  # list
         self.ronda_actual = 1  # int
         self.campeon = None  # str
-        self.continuan = []  # list
+        self._continuan = []  # list
 
-    def continuan_en_liga(self):
+    @property
+    def continuan(self):
         """Metodo para obtener los entrenadores que siguen en la liga"""
 
         self.continuan = []
@@ -28,7 +29,7 @@ class LigaProgramon:
 
         self.continuan = self.continuan.strip(" ")
 
-        return self.continuan
+        return self._continuan
 
     def resumen_campeonato(self):
         """Metodo para visualizar el campeonato"""
@@ -83,4 +84,6 @@ class LigaProgramon:
                 )
 
             for par in lista_pares:
+                # simular pelea
+
                 pass

@@ -5,6 +5,20 @@ from parametros import (
     ENERGIA_ENTRENAMIENTO,
     MIN_AUMENTO_EXPERIENCIA,
     MAX_AUMENTO_EXPERIENCIA,
+    MIN_AUMENTO_ENTRENAMIENTO,
+    MAX_AUMENTO_ENTRENAMIENTO,
+    AUMENTAR_ATAQUE_FUEGO,
+    AUMENTAR_VIDA_PLANTA,
+    AUMENTAR_VELOCIDAD_AGUA,
+    ENERGIA_CREAR_OBJETO,
+    PROB_EXITO_OBJETO,
+    GASTO_ENERGIA_BAYA,
+    PROB_EXITO_BAYA,
+    GASTO_ENERGIA_POCION,
+    AUMENTO_DEFENSA,
+    GASTO_ENERGIA_CARAMELO,
+    PROB_EXITO_CARAMELO,
+    PROB_EXITO_POCION,
 )
 import random
 
@@ -209,3 +223,37 @@ class Entrenador:
 
         elif eleccion == "1":
             print("Volviendo al menu de entrenadores...\n")
+
+    def crear_objeto(self, tipo):
+
+        if tipo == "Baya":
+
+            if random() > PROB_EXITO_BAYA:
+                print("No se pudo crear el objeto")
+
+            else:
+                objeto = Objeto("Baya", "Baya")
+                print("Se creó el objeto")
+                self.objetos.append(objeto)
+
+        elif tipo == "Pocion":
+
+            if random() > PROB_EXITO_POCION:
+                print("No se pudo crear el objeto")
+
+            else:
+                objeto = Objeto("Pocion", "Pocion")
+                print("Se creó el objeto")
+                self.objetos.append(objeto)
+
+        elif tipo == "Caramelo":
+
+            if random() > PROB_EXITO_CARAMELO:
+                print("No se pudo crear el objeto")
+
+            else:
+                objeto = Objeto("Caramelo", "Caramelo")
+                print("Se creó el objeto")
+                self.objetos.append(objeto)
+
+        return objeto

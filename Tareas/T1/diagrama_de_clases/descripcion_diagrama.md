@@ -2,4 +2,4 @@
 
 ## Descripcion del diagrama de clases
 
-En esta parte debería estar la descripcion del diagrama de clases para la entrega final
+El diagrama explica el funcionamiento del codigo, donde se generan las clases solicitadas y se agregan properties y funciones extra para un mejor desarrollo del juego.

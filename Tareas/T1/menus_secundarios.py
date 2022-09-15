@@ -135,6 +135,7 @@ def menu_crear_objeto(entrenador: Entrenador):
 
     elif eleccion == 2:
         print("Has elegido una baya")
+
         pass
 
     elif eleccion == 3:
