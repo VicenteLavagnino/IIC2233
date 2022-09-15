@@ -2,9 +2,11 @@
 # luego esta lista la visualizaremos en el menu principal
 
 import menus_secundarios
+from file_liga import LigaProgramon
+from data import liga
 
 
-def menu_inicio(entrenadores, objetos, programones):
+def menu_inicio(entrenadores, objetos, programones, liga):
     """funcion para mostrar el menu de inicio"""
 
     print("\n" + "-" * 70)
@@ -78,16 +80,23 @@ def menu_entrenador(entrenador):
         menu_entrenador(entrenador)
 
     elif int(eleccion) == 3:
-        pass
+        print("Avanzando al menu de simulacion de ronda...\n")
+        menus_secundarios.menu_simular_ronda(entrenador)
+        menu_entrenador(entrenador)
 
     elif int(eleccion) == 4:
-        pass
+        print("Avanzando al menu de resumen de campeonato...\n")
+        liga.resumen_campeonato()
 
     elif int(eleccion) == 5:
-        pass
+        print("Avanzando al menu de creacion de objetos...\n")
+        menus_secundarios.menu_crear_objetos(entrenador)
 
     elif int(eleccion) == 6:
-        pass
+        print("Avanzando al menu de uso de objetos...\n")
+        menus_secundarios.menu_usar_objeto(entrenador)
 
     elif int(eleccion) == 7:
-        pass
+        print("Avanzando al menu de estado de entrenador...\n")
+        entrenador.estado_entrenador()
+        menu_entrenador(entrenador)

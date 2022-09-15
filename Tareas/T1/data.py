@@ -2,6 +2,7 @@ import os
 from file_entrenador import Entrenador
 from file_programon import Programon
 from file_objeto import Objeto
+from file_liga import LigaProgramon
 
 
 def read_csv(ruta: str) -> list[list[str]]:
@@ -99,6 +100,7 @@ def abrir_objetos() -> list[Objeto]:
 programones = abrir_programones()
 objetos = abrir_objetos()
 entrenadores = abrir_entrenadores(programones, objetos)
+liga = LigaProgramon(entrenadores)
 
 if __name__ == "__main__":
     print(entrenadores)

@@ -18,6 +18,7 @@ class Entrenador:
         self.programones = programones
         self.energia = energia
         self.objetos = objetos
+        self.rondas_jugadas = 0
 
     def estado_entrenador(self):
         """Metodo para ver el estado del entrenador"""
@@ -37,7 +38,7 @@ class Entrenador:
         print("-" * 70)
         print(" " * 20 + "*** Programones ***" + " " * 20)
         print("-" * 70)
-        # print(f"{Nombre}    |    {Tipo}   |   {Nivel}  | {Vida}")
+        print(f"Nombre    |    Tipo   |   NiveL  | Vida")
         print("-" * 70)
         for programon in self.programones:
             print(
