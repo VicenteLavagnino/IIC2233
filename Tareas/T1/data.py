@@ -1,6 +1,5 @@
 import os
-from file_entrenador import Entrenador
-from file_programon import Programon
+from file_entrenador_programon import Entrenador, Programon
 from file_objeto import Objeto
 from file_liga import LigaProgramon
 

@@ -1,8 +1,8 @@
 # en este archivo se desarrolla la clase Liga Programon
 
 from select import select
-from file_entrenador import Entrenador
-from file_programon import Programon
+from file_entrenador_programon import Entrenador, Programon
+from random import choice
 
 
 class LigaProgramon:
@@ -37,17 +37,50 @@ class LigaProgramon:
         print("-" * 70 + "\n")
         print("Participantes: " + self.entrenadores)
         print("Ronda actual: " + self.ronda_actual)
-        print("Entrenadores que siguen en la liga:" + LigaProgramon.continuan_en_liga())
+        print("Entrenadores que siguen en la liga:" + self.continuan_en_liga())
 
-        # agregar : Luego de mostrar lo anterior,en caso de quedar más rondas, se volverá al Menú Entrenador. !!!!!!!
-        # En otro caso, se avisa el resultado, se reinicia el programa y se vuelve al Menú de Inicio. !!!!!!!!!!
+        eleccion = input(
+            "Presione cualquier tecla para volver al menu de entrenadores: "
+        )
 
-    def simular_ronda(entrenador: Entrenador, programon: Programon):
+        pass
+
+    def simular_ronda(self, entrenador: Entrenador, programon: Programon):
         """Metodo para simular una ronda"""
 
         entrenador.rondas_jugadas += 1
 
-        if entrenador.rondas_jugadas == 4:
+        if entrenador.rondas_jugadas >= 4:
             pass
 
-        pass
+        else:
+            # generar pares
+            entrenadores_disponibles = self.entrenadores.copy()
+            entrenadores_disponibles.remove(entrenador)
+
+            oponente = choice(entrenadores_disponibles)
+            entrenadores_disponibles.remove(oponente)
+
+            lista_pares = [
+                [
+                    (entrenador, programon),
+                    (oponente, oponente.choice(oponente.programones)),
+                ]
+            ]
+
+            while len(entrenadores_disponibles) > 0:
+
+                rival1 = choice(entrenadores_disponibles)
+                entrenadores_disponibles.remove(rival1)
+                rival2 = choice(entrenadores_disponibles)
+                entrenadores_disponibles.remove(rival2)
+
+                lista_pares.append(
+                    [
+                        (rival1, rival1.choice(rival1.programones)),
+                        (rival2, rival2.choice(rival2.programones)),
+                    ]
+                )
+
+            for par in lista_pares:
+                pass

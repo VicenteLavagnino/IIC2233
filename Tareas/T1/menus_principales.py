@@ -40,10 +40,10 @@ def menu_inicio(entrenadores, objetos, programones, liga):
         print("entrenador seleccionado!")
         print("Avanzando al menu de entrenadores...\n")
 
-        return menu_entrenador(entrenadores[int(eleccion) - 1])
+        return menu_entrenador(entrenadores[int(eleccion) - 1], liga)
 
 
-def menu_entrenador(entrenador):
+def menu_entrenador(entrenador, liga):
 
     print("\n" + "-" * 70)
     print(" " * 20 + "*** Menu Entrenador ***" + " " * 20)
@@ -77,16 +77,17 @@ def menu_entrenador(entrenador):
     elif int(eleccion) == 2:
         print("Avanzando al menu de entrenamiento...\n")
         menus_secundarios.menu_entrenamiento(entrenador)
-        menu_entrenador(entrenador)
+        menu_entrenador(entrenador, liga)
 
     elif int(eleccion) == 3:
         print("Avanzando al menu de simulacion de ronda...\n")
-        menus_secundarios.menu_simular_ronda(entrenador)
+        menus_secundarios.menu_simular_ronda(entrenador, liga)
         menu_entrenador(entrenador)
 
     elif int(eleccion) == 4:
         print("Avanzando al menu de resumen de campeonato...\n")
         liga.resumen_campeonato()
+        menu_entrenador(entrenador, liga)
 
     elif int(eleccion) == 5:
         print("Avanzando al menu de creacion de objetos...\n")
@@ -99,4 +100,4 @@ def menu_entrenador(entrenador):
     elif int(eleccion) == 7:
         print("Avanzando al menu de estado de entrenador...\n")
         entrenador.estado_entrenador()
-        menu_entrenador(entrenador)
+        menu_entrenador(entrenador, liga)
