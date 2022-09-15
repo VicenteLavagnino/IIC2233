@@ -1,5 +1,5 @@
 from time import sleep
-from threading import Thread
+from threading import Thread, Lock
 
 from centro_urbano import CentroUrbano
 
@@ -44,6 +44,8 @@ class Recolector(Thread):
 
     def ingresar_oro(self) -> None:
         # Completar
+        lock = Lock()
+        lock.acquire()
         centro_urbano = self.centro_urbano
         centro_urbano.oro += self.oro
         self.oro = 0
@@ -51,6 +53,7 @@ class Recolector(Thread):
             f"El recolector ha ingresado {self.oro} monedas de oro al centro urbano"
         )
         self.log(f"El centro urbano tiene {centro_urbano.oro} monedas de oro")
+        lock.release()
         pass
 
     def dormir(self) -> None:
