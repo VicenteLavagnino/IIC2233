@@ -100,4 +100,14 @@ class Constructor(Thread):
 
     def construir_choza(self) -> None:
         # Completar
+        lock = Lock()
+        lock.acquire()
+
+        centro_urbano = self.centro_urbano
+        centro_urbano.chozas += 1
+        self.log(
+            f"El constructor ha construido una choza, el centro urbano tiene {centro_urbano.chozas} chozas"
+        )
+
+        lock.release()
         pass
