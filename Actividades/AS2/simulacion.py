@@ -1,13 +1,12 @@
+from copyreg import constructor
 from centro_urbano import CentroUrbano
 from time import sleep
 from trabajadores import Recolector, Constructor
-from parametros import TIEMPO_ATAQUE_BARBAROS, VIDA_PEKKA, \
-    RECUPERACION_VIDA_PEKKA
+from parametros import TIEMPO_ATAQUE_BARBAROS, VIDA_PEKKA, RECUPERACION_VIDA_PEKKA
 from random import randint
 
 
 class Pekka:
-
     def __init__(self) -> None:
         super().__init__()
         self.vida = VIDA_PEKKA
@@ -19,13 +18,29 @@ class Pekka:
 
 
 class Simulacion:
-
     def __init__(self) -> None:
         self.centro_urbano = CentroUrbano()
         self.pekka = Pekka()
 
     def nuevo_dia(self) -> None:
         # Completar
+        # deben iniciar de forma paralela y el metodo se cierra cuando terminan
+        recolector_1 = Recolector("Recolector 1", self.centro_urbano)
+        recolector_2 = Recolector("Recolector 2", self.centro_urbano)
+        constructor_1 = Constructor("Constructor 1", self.centro_urbano)
+        constructor_2 = Constructor("Constructor 2", self.centro_urbano)
+
+        recolector_1.start()
+        recolector_2.start()
+        constructor_1.start()
+        constructor_2.start()
+
+        recolector_1.join()
+        recolector_2.join()
+        constructor_1.join()
+        constructor_2.join()
+
+        self.log("El día ha terminado")
         pass
 
     def nueva_noche(self) -> None:
