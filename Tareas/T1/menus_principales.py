@@ -61,7 +61,7 @@ def menu_entrenador(entrenador, liga):
 
     eleccion = input("Ingrese el numero del entrenador que desea o 0 para Salir: ")
 
-    while not eleccion.isdigit() or not int(eleccion) in range(0, 7):
+    while not eleccion.isdigit() or not int(eleccion) in range(0, 8):
         print(f"Su respuesta debe ser un numero entero entre 0 y 7\n")
         eleccion = input("Ingrese el numero del entrenador que desea o 0 para Salir: ")
 

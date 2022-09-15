@@ -27,9 +27,9 @@ def menu_entrenamiento(entrenador: Entrenador):
         "Ingrese el numero del programon que desea, 0 para Salir o 1 para Volver: "
     )
 
-    while not eleccion.isdigit() or not int(eleccion) in range(0, len(programones) + 2):
+    while not eleccion.isdigit() or not int(eleccion) in range(0, len(programones) + 3):
         print(
-            f"Su respuesta debe ser un numero entero entre 0 y {len(programones) + 2}\n"
+            f"Su respuesta debe ser un numero entero entre 0 y {len(programones) + 3}\n"
         )
         eleccion = input(
             "Ingrese el numero del programon que desea, 0 para Salir o 1 para Volver: "
@@ -74,9 +74,9 @@ def menu_simular_ronda(entrenador: list, liga: LigaProgramon):
         "Ingrese el numero del programon que desea, 0 para Salir o 1 para Volver: "
     )
 
-    while not eleccion.isdigit() or not int(eleccion) in range(0, len(programones) + 2):
+    while not eleccion.isdigit() or not int(eleccion) in range(0, len(programones) + 3):
         print(
-            f"Su respuesta debe ser un numero entero entre 0 y {len(programones) + 2}\n"
+            f"Su respuesta debe ser un numero entero entre 0 y {len(programones) + 3}\n"
         )
         eleccion = input(
             "Ingrese el numero del programon que desea, 0 para Salir o 1 para Volver: "
@@ -169,8 +169,8 @@ def menu_usar_objeto(entrenador: Entrenador):
         "Ingrese el numero del objeto que desea, 0 para Salir o 1 para Volver: "
     )
 
-    while not eleccion.isdigit() or not int(eleccion) in range(0, len(objetos) + 2):
-        print(f"Su respuesta debe ser un numero entero entre 0 y {len(objetos) + 2}\n")
+    while not eleccion.isdigit() or not int(eleccion) in range(0, len(objetos) + 3):
+        print(f"Su respuesta debe ser un numero entero entre 0 y {len(objetos) + 3}\n")
         eleccion = input(
             "Ingrese el numero del objeto que desea, 0 para Salir o 1 para Volver: "
         )
