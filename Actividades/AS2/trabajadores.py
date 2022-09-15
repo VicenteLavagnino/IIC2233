@@ -61,11 +61,12 @@ class Recolector(Thread):
 
 
 # Completar
-class Constructor:
+class Constructor(Thread):
     def __init__(self, nombre, centro_urbano: CentroUrbano) -> None:
         self.nombre = nombre
         self.centro_urbano = centro_urbano
         # Completar
+        self.daemon = True
 
     def run(self) -> None:
         while self.retirar_oro():
@@ -78,8 +79,24 @@ class Constructor:
         print(f"El constructor {self.nombre}: {mensage}")
 
     def retirar_oro(self) -> bool:
+
         # Completar
-        pass
+        lock = Lock()
+        lock.acquire()
+        centro_urbano = self.centro_urbano
+
+        if centro_urbano.oro >= ORO_CHOZA:
+            centro_urbano.oro -= ORO_CHOZA
+            self.log(f"El centro urbano tiene {centro_urbano.oro} monedas de oro")
+            lock.release()
+            return True
+
+        else:
+            self.log(
+                "El Constructor no fue capaz de retirar oro, ya que no hay suficiente"
+            )
+            lock.release()
+            return False
 
     def construir_choza(self) -> None:
         # Completar
