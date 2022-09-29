@@ -53,8 +53,7 @@ class VentanaInicio(QWidget):
     def enviar_login(self) -> None:
 
         # COMPLETAR
-        datos = (self.username, self.password)
-        self.senal_enviar_login.emit(datos)
+        self.senal_enviar_login.emit(self.username.text(), self.password.text())
         pass
 
     def recibir_validacion(self, valid, errores: set) -> None:

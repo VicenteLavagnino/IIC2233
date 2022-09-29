@@ -20,7 +20,7 @@ class LogicaInicio(QObject):
 
             if contrasena not in CONTRASENAS_PROHIBIDAS:
                 self.senal_abrir_juego.emit(usuario)
-                self.senal_respuesta_validacion.emit(True, {})
+                self.senal_respuesta_validacion.emit(True, set())
 
             else:
                 self.senal_respuesta_validacion.emit(False, {"contraseña"})

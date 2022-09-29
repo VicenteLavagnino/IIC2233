@@ -2,6 +2,14 @@ from PyQt5.QtCore import QObject, pyqtSignal, QTimer, QEventLoop
 
 from backend.elementos_juego import Bloque
 import parametros as p
+from parametros import (
+    TIEMPO_JUEGO,
+    ACTUALIZAR_JUEGO,
+    ACTUALIZAR_PELOTA,
+    TECLA_IZQUIERDA,
+    TECLA_DERECHA,
+    TECLA_CHEATCODE_KO,
+)
 
 
 class LogicaJuego(QObject):
@@ -54,12 +62,24 @@ class LogicaJuego(QObject):
     def crear_bloques(self):
         self.bloques.clear()
         for _ in range(p.NUM_BLOQUES):
-            self.bloques.append(
-                Bloque()
-            )
+            self.bloques.append(Bloque())
 
     def configurar_timers(self):
+
         # COMPLETAR
+        self.timer_juego = QTimer()
+        self.timer_juego.setSingleShot(True)
+        self.timer_juego.setInterval(TIEMPO_JUEGO)
+        self.timer_juego.timeout.connect(self.terminar_juego)
+
+        self.timer_actualizar_juego = QTimer()
+        self.timer_actualizar_juego.setInterval(ACTUALIZAR_JUEGO)
+        self.timer_actualizar_juego.timeout.connect(self.actualizar_juego)
+
+        self.timer_pelota = QTimer()
+        self.timer_pelota.setInterval(ACTUALIZAR_PELOTA)
+        self.timer_pelota.timeout.connect(self.mover_pelota)
+
         pass
 
     def iniciar(self, usuario):
@@ -67,14 +87,25 @@ class LogicaJuego(QObject):
         self.timer_actualizar_juego.start()
         self.timer_pelota.start()
 
-        self.senal_cargar_datos_iniciales.emit({
-            'Usuario': usuario,
-            'Puntaje': str(self.puntaje),
-            'Tiempo': str(p.TIEMPO_JUEGO)
-        })
+        self.senal_cargar_datos_iniciales.emit(
+            {
+                "Usuario": usuario,
+                "Puntaje": str(self.puntaje),
+                "Tiempo": str(p.TIEMPO_JUEGO),
+            }
+        )
 
-    def mover_plataforma(self, tecla: str):
+    def mover_plataforma(self, tecla: str) -> None:
+
         # COMPLETAR
+
+        if tecla == "TECLA_IZQUIERDA" or tecla == "TECLA_DERECHA":
+            self.plataforma.mover(tecla)
+            self.senal_mover_plataforma.emit(self.plataforma.posicion)
+
+        elif tecla == "TECLA_CHEATCODE_KO":
+            self.cheatcode()
+
         pass
 
     def mover_pelota(self):
@@ -83,7 +114,7 @@ class LogicaJuego(QObject):
         rebote_plataforma = self.plataforma.revisar_rebote(nueva_pos)
         rebote_bloque = self.eliminar_bloque(nueva_pos)
         if rebote_plataforma or rebote_bloque:
-            self.pelota.cambiar_direccion('y')
+            self.pelota.cambiar_direccion("y")
         if nueva_pos[1] >= p.LIMITE_VIDA:
             self.bajar_vida()
         if rebote_bloque:
@@ -113,10 +144,9 @@ class LogicaJuego(QObject):
 
     def actualizar_juego(self):
         tiempo_juego = self.timer_juego.remainingTime() // 1000
-        self.senal_enviar_datos.emit({
-            'Puntaje': str(self.puntaje),
-            'Tiempo': str(tiempo_juego)
-        })
+        self.senal_enviar_datos.emit(
+            {"Puntaje": str(self.puntaje), "Tiempo": str(tiempo_juego)}
+        )
 
     def terminar_juego(self):
         self.timer_juego.stop()
@@ -126,9 +156,9 @@ class LogicaJuego(QObject):
             resultado = True
         else:
             resultado = False
-        self.senal_terminar_juego.emit({
-            'Puntaje': str(self.puntaje),
-            'Resultado': resultado})
+        self.senal_terminar_juego.emit(
+            {"Puntaje": str(self.puntaje), "Resultado": resultado}
+        )
         self.senal_cerrar_ventana_juego.emit()
         self.reset_datos()
 
@@ -141,11 +171,9 @@ class LogicaJuego(QObject):
         self.plataforma.resetear_posicion()
 
         self.senal_reset_ventana.emit()
-        self.senal_cargar_datos_iniciales.emit({
-            'Usuario': '',
-            'Puntaje': str(self.puntaje),
-            'Tiempo': str(p.TIEMPO_JUEGO)
-        })
+        self.senal_cargar_datos_iniciales.emit(
+            {"Usuario": "", "Puntaje": str(self.puntaje), "Tiempo": str(TIEMPO_JUEGO)}
+        )
 
     def cheatcode(self):
         for bloque in self.bloques:

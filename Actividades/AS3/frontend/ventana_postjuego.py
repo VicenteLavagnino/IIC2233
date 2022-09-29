@@ -33,8 +33,8 @@ class VentanaPostjuego(window_name, base_class):
 
     def abrir(self, datos: dict):
         self.show()
-        self.puntaje = datos['Puntaje']
-        self.label_puntaje.setText(datos['Puntaje'])
+        self.puntaje = datos["Puntaje"]
+        self.label_puntaje.setText(datos["Puntaje"])
         self.label_puntaje.repaint()
 
     def salir(self):

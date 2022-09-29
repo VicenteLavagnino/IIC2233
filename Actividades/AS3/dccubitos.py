@@ -66,6 +66,14 @@ class DCCubitos(QApplication):
 
         self.logica_juego.senal_terminar_juego.connect(self.ventana_postjuego.abrir)
 
+        self.ventana_juego.senal_iniciar_juego.connect(self.logica_juego.iniciar)
+
+        self.ventana_juego.senal_tecla.connect(self.logica_juego.mover_plataforma)
+
+        self.logica_juego.senal_mover_plataforma.connect(
+            self.ventana_juego.mover_plataforma
+        )
+
     def conectar_postjuego(self):
         self.ventana_postjuego.senal_abrir_inicio.connect(self.ventana_inicio.show)
 
