@@ -25,11 +25,11 @@ class VentanaJuego(window_name, base_class):
         self.boton_salir.clicked.connect(self.close)
 
     def setear_datos(self, datos: dict):
-        self.label_nombre.setText(datos['Usuario'])
+        self.label_nombre.setText(datos["Usuario"])
         self.label_nombre.repaint()
-        self.label_puntos.setText(datos['Puntaje'])
+        self.label_puntos.setText(datos["Puntaje"])
         self.label_puntos.repaint()
-        self.label_tiempo.setText(datos['Tiempo'])
+        self.label_tiempo.setText(datos["Tiempo"])
         self.label_tiempo.repaint()
 
     def asignar_bloques(self):
@@ -58,14 +58,14 @@ class VentanaJuego(window_name, base_class):
             22: self.bloque_22,
             23: self.bloque_23,
             24: self.bloque_24,
-            25: self.bloque_25
+            25: self.bloque_25,
         }
 
     def actualizar_datos(self, datos: dict):
-        self.label_puntos.setText(datos['Puntaje'])
+        self.label_puntos.setText(datos["Puntaje"])
         self.label_puntos.repaint()
 
-        self.label_tiempo.setText(datos['Tiempo'])
+        self.label_tiempo.setText(datos["Tiempo"])
         self.label_tiempo.repaint()
 
     def mover_plataforma(self, posicion: tuple):
@@ -87,11 +87,16 @@ class VentanaJuego(window_name, base_class):
         for vida in self.labels_vidas:
             vida.show()
 
-    def mostrar_ventana(self, usuario):
+    def mostrar_ventana(self, usuario: str) -> None:
+
         # COMPLETAR
+        self.show()
+        self.senal_iniciar_juego.emit(usuario)
         pass
 
-    def keyPressEvent(self, event):
-        # COMPLETAR
-        pass
+    def keyPressEvent(self, event) -> None:
 
+        # COMPLETAR
+        valor = event.text().lower()
+        self.senal_tecla.emit(valor)
+        pass
