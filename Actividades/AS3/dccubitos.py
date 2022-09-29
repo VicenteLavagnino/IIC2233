@@ -9,7 +9,6 @@ from backend.elementos_juego import Pelota, Plataforma
 
 
 class DCCubitos(QApplication):
-
     def __init__(self, argv):
         super().__init__(argv)
 
@@ -23,7 +22,7 @@ class DCCubitos(QApplication):
         self.pelota = Pelota()
         self.logica_inicio = LogicaInicio()
         self.logica_juego = LogicaJuego(self.plataforma, self.pelota)
-        
+
         # Conectar Señales
         self.conectar_inicio()
         self.conectar_juego()
@@ -31,40 +30,44 @@ class DCCubitos(QApplication):
 
     def conectar_inicio(self):
         # COMPLETAR
+        self.ventana_inicio.senal_enviar_login.connect(
+            self.logica_inicio.comprobar_usuario
+        )
         pass
 
     def conectar_juego(self):
-        # COMPLETAR
 
+        # COMPLETAR
+        self.logica_inicio.senal_respuesta_validacion.connect(
+            self.ventana_inicio.recibir_validacion
+        )
+        self.logica_inicio.senal_abrir_juego.connect(self.ventana_juego.mostrar_ventana)
 
         # Señales ya conectadas: no modificar
         self.logica_juego.senal_cargar_datos_iniciales.connect(
-            self.ventana_juego.setear_datos)
+            self.ventana_juego.setear_datos
+        )
 
-        self.logica_juego.senal_mover_pelota.connect(
-            self.ventana_juego.mover_pelota)
+        self.logica_juego.senal_mover_pelota.connect(self.ventana_juego.mover_pelota)
 
         self.logica_juego.senal_enviar_datos.connect(
-            self.ventana_juego.actualizar_datos)
-        
+            self.ventana_juego.actualizar_datos
+        )
+
         self.logica_juego.senal_eliminar_bloque.connect(
-            self.ventana_juego.eliminar_bloque)
+            self.ventana_juego.eliminar_bloque
+        )
 
-        self.logica_juego.senal_bajar_vida.connect(
-            self.ventana_juego.bajar_vida)
+        self.logica_juego.senal_bajar_vida.connect(self.ventana_juego.bajar_vida)
 
-        self.logica_juego.senal_cerrar_ventana_juego.connect(
-            self.ventana_juego.close)
+        self.logica_juego.senal_cerrar_ventana_juego.connect(self.ventana_juego.close)
 
-        self.logica_juego.senal_reset_ventana.connect(
-            self.ventana_juego.reset_labels)
+        self.logica_juego.senal_reset_ventana.connect(self.ventana_juego.reset_labels)
 
-        self.logica_juego.senal_terminar_juego.connect(
-            self.ventana_postjuego.abrir)
-        
+        self.logica_juego.senal_terminar_juego.connect(self.ventana_postjuego.abrir)
+
     def conectar_postjuego(self):
-        self.ventana_postjuego.senal_abrir_inicio.connect(
-            self.ventana_inicio.show)
+        self.ventana_postjuego.senal_abrir_inicio.connect(self.ventana_inicio.show)
 
         self.ventana_postjuego.senal_cerrar_juego.connect(self.exit)
 
