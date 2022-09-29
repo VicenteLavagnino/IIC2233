@@ -57,8 +57,20 @@ class VentanaInicio(QWidget):
         self.senal_enviar_login.emit(datos)
         pass
 
-    def recibir_validacion(self, valid, errores) -> None:
+    def recibir_validacion(self, valid, errores: set) -> None:
 
         # COMPLETAR
+
+        if valid:
+            self.hide()
+
+        else:
+            if "usuario" in errores:
+                self.username.setText("")
+                self.username.setPlaceholderText("Usuario inválido")
+
+            if "contraseña" in errores:
+                self.password.setText("")
+                self.password.setPlaceholderText("Contraseña inválida")
 
         pass
