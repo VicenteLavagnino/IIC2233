@@ -1,6 +1,5 @@
 from PyQt5.QtCore import QObject, pyqtSignal
-
-import parametros as p
+from parametros import CONTRASENAS_PROHIBIDAS
 
 
 class LogicaInicio(QObject):
@@ -11,6 +10,27 @@ class LogicaInicio(QObject):
     def __init__(self):
         super().__init__()
 
-    def comprobar_usuario(self, usuario, contrasena):
+    def comprobar_usuario(self, usuario: str, contrasena: str) -> None:
+
         # COMPLETAR
+
+        # ver si usuario es alfanumerico
+
+        if usuario.isalnum():
+
+            if contrasena not in CONTRASENAS_PROHIBIDAS:
+                self.senal_abrir_juego.emit(usuario)
+                self.senal_respuesta_validacion.emit(True, {})
+
+            else:
+                self.senal_respuesta_validacion.emit(False, {"contraseña"})
+
+        elif not usuario.isalnum():
+
+            if contrasena in CONTRASENAS_PROHIBIDAS:
+                self.senal_respuesta_validacion.emit(False, {"usuario", "contraseña"})
+
+            else:
+                self.senal_respuesta_validacion.emit(False, {"usuario"})
+
         pass
