@@ -99,11 +99,10 @@ class LogicaJuego(QObject):
 
         # COMPLETAR
 
-        if tecla == "TECLA_IZQUIERDA" or tecla == "TECLA_DERECHA":
-            self.plataforma.mover(tecla)
-            self.senal_mover_plataforma.emit(self.plataforma.posicion)
+        if tecla == p.TECLA_IZQUIERDA or tecla == p.TECLA_DERECHA:
+            self.senal_mover_plataforma.emit(self.plataforma.mover(tecla))
 
-        elif tecla == "TECLA_CHEATCODE_KO":
+        elif tecla == p.TECLA_CHEATCODE_KO:
             self.cheatcode()
 
         pass

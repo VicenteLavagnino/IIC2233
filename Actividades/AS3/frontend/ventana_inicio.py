@@ -28,7 +28,6 @@ class VentanaInicio(QWidget):
         self.logo.setGeometry(20, 20, 100, 100)
         imagen = QPixmap(RUTA_LOGO)
         self.logo.setPixmap(imagen)
-        # preguntar por setScaledContents = true y (20, 20, 100, 100)!!!!
 
         # Usuario [QLabel] [QLineEdit]
         self.nombre = QLabel("Ingresa tu nombre de usuario", self)
