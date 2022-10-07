@@ -1,9 +1,18 @@
 # En este archivo se definen los parametros
 
-# PLANTA CLÁSICA
-INTERVALO_DISPARO = None
-DANO_PROYECTIL = None
-VIDA_PLANTA = None
+from random import randint, random
+
+# PLANTAS
+
+VIDA_PLANTA = 100
+DANO_PROYECTIL = 10
+INTERVALO_DISPARO = 1
+
+RALENTIZAR_ZOMBIE = random()
+
+INTERVALO_SOLES_GIRASOL = None
+CANTIDAD_SOLES: int = 10
+
 
 # PLANTA AZUL
 RALENTIZAR_ZOMBIE = None
