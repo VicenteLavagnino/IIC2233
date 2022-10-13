@@ -1,22 +1,25 @@
 # backend de inicio de juego
 
 from PyQt5.QtCore import QObject, pyqtSignal
+from ranking import get_ranking
 
 # codigo reutilizado de la AS3
 class LogicaInicio(QObject):
 
-    senal_respuesta_validacion = pyqtSignal(bool)
-    senal_abrir_juego = pyqtSignal(str)
+    senal_respuesta_validacion = pyqtSignal(bool)  # (se puede)
+    senal_abrir_principal = pyqtSignal(str)
+    senal_usuario = pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
 
-    def comprobar_usuario(self, usuario: str) -> None:
+    def validar_usuario(self, usuario: str) -> None:
 
-        if usuario.isalnum():
+        if usuario.isalnum() and usuario not in get_ranking():
 
-            self.senal_abrir_juego.emit(usuario)
             self.senal_respuesta_validacion.emit(True)
+            self.senal_abrir_principal.emit(usuario)
+            self.senal_usuario.emit(usuario)
 
-        elif not usuario.isalnum():
+        else:
             self.senal_respuesta_validacion.emit(False)

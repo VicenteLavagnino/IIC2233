@@ -37,5 +37,8 @@ RUTA_VENTANA_JUEGO = os.path.join("frontend", "uic", "ventana_juego.ui")
 RUTA_VENTANA_POSTRONDA = os.path.join("frontend", "uic", "ventana_postronda.ui")
 RUTA_VENTANA_RANKING = os.path.join("frontend", "uic", "ventana_ranking.ui")
 
+# imagen noche
+RUTA_IMAGEN_NOCHE = os.path.join("frontend", "sprites", "Fondos", "salidaNocturna.png")
+
 
 # sprites

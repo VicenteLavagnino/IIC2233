@@ -6,6 +6,7 @@ import sys
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import pyqtSignal
 
 from parametros import RUTA_VENTANA_RANKING
 
@@ -20,8 +21,21 @@ window_name, base_class = uic.loadUiType(RUTA_VENTANA_RANKING)
 
 
 class VentanaRanking(window_name, base_class):
+
+    senal_volver = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        self.pushButton_volver.clicked.connect(self.volver)
+
+    def mostrar_ventana(self) -> None:
+        self.show()
+
+    def volver(self):
+        self.hide()
+        self.senal_volver.emit()
+        pass
 
     pass

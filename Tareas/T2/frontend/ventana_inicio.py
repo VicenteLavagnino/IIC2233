@@ -24,8 +24,8 @@ window_name, base_class = uic.loadUiType(RUTA_VENTANA_INICIO)
 class VentanaInicio(window_name, base_class):
 
     senal_login = pyqtSignal(str)
-    senal_ranking = pyqtSignal(int)
-    senal_salir = pyqtSignal(int)
+    senal_mostrar_ranking = pyqtSignal()
+    senal_cerrar_juego = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -36,14 +36,15 @@ class VentanaInicio(window_name, base_class):
         self.pushButton_salir.clicked.connect(self.salir)
 
     def enviar_login(self):
-        self.senal_login.emit(self.lineEdit_usuario.text())
+        self.senal_login.emit(self.lineEdit.text())
 
     def ver_ranking(self):
-        self.senal_ranking.emit(0)
+        self.hide()
+        self.senal_mostrar_ranking.emit()
         pass
 
     def salir(self):
-        self.senal_salir.emit(1)
+        self.senal_cerrar_juego.emit()
         pass
 
     def recibir_validacion(self, validacion):
@@ -51,8 +52,9 @@ class VentanaInicio(window_name, base_class):
         if not validacion:
 
             self.lineEdit = QLineEdit("Usuario invalido")
+            self.pushButton_jugar.clicked.connect(self.enviar_login)
 
-        else:
-            pass
+        elif validacion:
+            self.hide()
 
     pass
