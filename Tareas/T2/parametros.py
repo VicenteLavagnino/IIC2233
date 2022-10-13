@@ -1,54 +1,41 @@
 # En este archivo se definen los parametros
-
+import os
 from random import randint, random
 
 # PLANTAS
 
-VIDA_PLANTA = 100
-DANO_PROYECTIL = 10
-INTERVALO_DISPARO = 1
+VIDA_PLANTA = None
+INTERVALO_DISPARO = None
+DANO_PROYECTIL = None
 
-RALENTIZAR_ZOMBIE = random()
-
-INTERVALO_SOLES_GIRASOL = None
-CANTIDAD_SOLES: int = 10
-
-
-# PLANTA AZUL
+# planta azul
 RALENTIZAR_ZOMBIE = None
-# INTERVALO_DISPARO = None
-# VIDA_PLANTA = None
 
-# GIRASOL
+# girasol
 INTERVALO_SOLES_GIRASOL = None
-# VIDA_PLANTA = None
 CANTIDAD_SOLES = None
 
-# PLANTA PATATA
-# 2 * VIDA_PLANTA
 
 # ZOMBIES
-PONDERADOR_NOCTURNO = None
-PONDERADOR_DIURNO = None
 
-# zombie clásico
-VELOCIDAD_ZOMBIE = None
-DANO_MORDIDA = None
-INTERVALO_TIEMPO_MORDIDA = None
 VIDA_ZOMBIE = None
+VELOCIDAD_ZOMBIE = None
+DANO_ZOMBIE = None
+INTERVALO_TIEMPO_MORDIDA = None
 
-# zombie rápido
-# 1.5 * VELOCIDAD_ZOMBIE
 
-# SOLES
-INTERVALOS_APARICION_SOLES = None
+# RUTAS
 
-# JARDIN DE LA ABUELA
-PONDERADOR_DIURNO = 0.9
+# puntajes
+RUTA_PUNTAJES = os.path.join("puntajes.txt")
 
-# SALIDA NOCHE
-PONDERADOR_NOCTURNO = 0.8
+# ventanas (ui files)
 
-# PUNTAJE
-PUNTAJE_ZOMBIE_DIURNO = None
-PUNTAJE_ZOMBIE_NOCTURNO = None
+RUTA_VENTANA_INICIO = os.path.join("frontend", "uic", "ventana_inicio.ui")
+RUTA_VENTANA_PRINCIPAL = os.path.join("frontend", "uic", "ventana_principal.ui")
+RUTA_VENTANA_JUEGO = os.path.join("frontend", "uic", "ventana_juego.ui")
+RUTA_VENTANA_POSTRONDA = os.path.join("frontend", "uic", "ventana_postronda.ui")
+RUTA_VENTANA_RANKING = os.path.join("frontend", "uic", "ventana_ranking.ui")
+
+
+# sprites
