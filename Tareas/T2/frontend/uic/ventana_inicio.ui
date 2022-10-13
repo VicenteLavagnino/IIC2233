@@ -93,7 +93,7 @@
      <string>Jugar</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_jugar_2">
+   <widget class="QPushButton" name="pushButton_ranking">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -125,7 +125,7 @@
      <string>Ranking</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_jugar_3">
+   <widget class="QPushButton" name="pushButton_salir">
     <property name="geometry">
      <rect>
       <x>340</x>
