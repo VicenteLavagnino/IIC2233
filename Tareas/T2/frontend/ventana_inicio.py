@@ -7,6 +7,7 @@ import sys
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QLineEdit
 from PyQt5.QtCore import pyqtSignal
+from helpers import pop_error
 
 
 from parametros import RUTA_VENTANA_INICIO
@@ -50,11 +51,9 @@ class VentanaInicio(window_name, base_class):
     def recibir_validacion(self, validacion):
 
         if not validacion:
-
-            self.lineEdit = QLineEdit("Usuario invalido")
+            pop_error("Usuario no válido")
             self.pushButton_jugar.clicked.connect(self.enviar_login)
-
-        elif validacion:
+        else:
             self.hide()
 
     pass

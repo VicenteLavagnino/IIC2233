@@ -22,27 +22,27 @@ Explicación: mantén el emoji correspondiente, de manera honesta, para cada ite
 - ✅ si completaste **correctamente** lo pedido
 - 🟠 si el item está **incompleto** o tiene algunos errores
 #### Ventanas: 39 pts (40%)
-##### ❌✅🟠 Ventana de Inicio
-##### ❌✅🟠 Ventana de Ranking	
-##### ❌✅🟠 Ventana principal
-##### ❌✅🟠 Ventana de juego	
-##### ❌✅🟠 Ventana post-ronda
+##### ✅ Ventana de Inicio
+##### ✅ Ventana de Ranking	
+##### ✅ Ventana principal
+##### 🟠 Ventana de juego	
+##### ✅ Ventana post-ronda
 #### Mecánicas de juego: 46 pts (47%)			
-##### ❌✅🟠 Plantas
-##### ❌✅🟠 Zombies
-##### ❌✅🟠 Escenarios		
-##### ❌✅🟠 Fin de ronda	
-##### ❌✅🟠 Fin de juego	
+##### ❌ Plantas
+##### ❌ Zombies
+##### ✅ Escenarios		
+##### ✅ Fin de ronda	
+##### ✅ Fin de juego	
 #### Interacción con el usuario: 22 pts (23%)
-##### ❌✅🟠 Clicks	
-##### ❌✅🟠 Animaciones
+##### 🟠 Clicks	
+##### ❌ Animaciones
 #### Cheatcodes: 8 pts (8%)
 ##### ❌✅🟠 Pausa
 ##### ❌✅🟠 S + U + N
 ##### ❌✅🟠 K + I + L
 #### Archivos: 4 pts (4%)
-##### ❌✅🟠 Sprites
-##### ❌✅🟠 Parametros.py
+##### ✅ Sprites
+##### ✅ Parametros.py
 ##### ❌✅🟠 K + I + L
 #### Bonus: 9 décimas máximo
 ##### ❌✅🟠 Crazy Cruz Dinámico
@@ -51,35 +51,37 @@ Explicación: mantén el emoji correspondiente, de manera honesta, para cada ite
 ##### ❌✅🟠 Música juego
 
 ## Ejecución :computer:
-El módulo principal de la tarea a ejecutar es  ```archivo.py```. Además se debe crear los siguientes archivos y directorios adicionales:
-1. ```archivo.ext``` en ```ubicación```
-2. ```directorio``` en ```ubicación```
-3. ...
+El módulo principal de la tarea a ejecutar es  ```main.py```. Además se debe crear los siguientes archivos y directorios adicionales:
+1. ```puntajes.txt``` en ```T2\```
+2. ```sprites\``` en ```frontend\```
+3. ```sonidos\``` en ```frontend\```
+4. ```aparicion_zombies.py``` en ```T2\```
 
 
 ## Librerías :books:
 ### Librerías externas utilizadas
 La lista de librerías externas que utilicé fue la siguiente:
 
-1. ```librería_1```: ```función() / módulo```
-2. ```librería_2```: ```función() / módulo``` (debe instalarse)
-3. ...
+1. ```PyQt5```: con sus distintos módulos para el funcionamiento de PyQt y QtDesigner
+2. ```time```: para los intervalos de tiempo
+3. ```random```: para aleatorizar factores
+4. ```os```: para las rutas
+5. ```sys```: para el cierre del programa
 
 ### Librerías propias
 Por otro lado, los módulos que fueron creados fueron los siguientes:
 
-1. ```librería_1```: Contiene a ```ClaseA```, ```ClaseB```, (ser general, tampoco es necesario especificar cada una)...
-2. ```librería_2```: Hecha para <insertar descripción **breve** de lo que hace o qué contiene>
-3. ...
+1. ```elementos_juego```: Contiene a todas las clases de objetos que interactuan en el juego
+2. ```helpers```: contiene funciones que se usan durante el codigo reiteradas veces
+3. ```parametros```: Para definir elementos del juego de manera ordenada
+4. ```dccruz```: donde se conectan las señales e interacciones del juego
+5. Además dentro de la carpeta ```backend``` está la los archivos de lógica para las distintas etapas del programa.
+6. En la misma línea del punto anterior, existe ```frontend``` con todos los archivos ```.py``` para las ventanas del programa. 
 
 ## Supuestos y consideraciones adicionales :thinking:
 Los supuestos que realicé durante la tarea son los siguientes:
 
-1. <Descripción/consideración 1 y justificación del por qué es válido/a> 
-2. <Descripción/consideración 2 y justificación del por qué es válido/a>
-3. ...
-
-PD: <una última consideración (de ser necesaria) o comentario hecho anteriormente que se quiera **recalcar**>
+hasta ahora no hay supuestos.
 
 
 -------
@@ -114,7 +116,9 @@ Lo importante es que expliquen qué hace la función y que si saben que alguna p
 ## Referencias de código externo :book:
 
 Para realizar mi tarea saqué código de:
-1. \<link de código>: este hace \<lo que hace> y está implementado en el archivo <nombre.py> en las líneas <número de líneas> y hace <explicación breve de que hace>
+1. \<https://github.com/IIC2233/VicenteLavagnino-iic2233-2022-2/tree/main/Actividades/AS3>: este hace \<distintas funciones de frontend> y está implementado en distintas partes del código, siendo previamente comentado en el mismo archivo.
+
+2.\<https://pythonbasics.org/pyqt-qmessagebox/>: este hace \<un pop de una ventanilla de error en el caso de que el nombre no pueda ser utilizado> y está implementado en el archivo ```helpers```en la función pop_error().
 
 
 

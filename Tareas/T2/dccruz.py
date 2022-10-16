@@ -2,7 +2,6 @@ from PyQt5.QtWidgets import QApplication
 
 # import backend
 from backend.logica_inicio import LogicaInicio
-from backend.logica_principal import LogicaPrincipal
 from backend.logica_juego import LogicaJuego
 from backend.elementos_juego import *
 
@@ -29,7 +28,6 @@ class DCCruz(QApplication):
 
         # instanciar logicas
         self.logica_inicio = LogicaInicio()
-        self.logica_principal = LogicaPrincipal()
         self.logica_juego = LogicaJuego()
 
         # conectar signals
@@ -69,18 +67,37 @@ class DCCruz(QApplication):
         self.logica_inicio.senal_usuario.connect(self.logica_juego.get_usuario)
         self.ventana_principal.senal_modo.connect(self.logica_juego.get_modo)
 
+        # INICIAR
+        self.ventana_juego.senal_iniciar_juego.connect(self.logica_juego.iniciar_juego)
+
+        # AVANZAR
+        self.ventana_juego.senal_comprobar_avanzar.connect(
+            self.logica_juego.comprobar_avanzar
+        )
+        self.logica_juego.senal_avanzar.connect(self.ventana_juego.avanzar)
+        self.ventana_juego.senal_avanzar.connect(self.ventana_postronda.mostrar_ventana)
+
         # SALIR
         self.ventana_juego.senal_cerrar_juego.connect(self.exit)
 
         pass
 
     def conectar_postronda(self):
+
+        self.ventana_postronda.senal_salir.connect(self.exit)
+        self.ventana_postronda.senal_siguiente_ronda.connect(
+            self.logica_juego.siguiente_ronda
+        )
+        self.logica_juego.senal_siguiete_ronda.connect(
+            self.ventana_juego.mostrar_ventana
+        )
         pass
 
     def conectar_ranking(self):
 
         # Volver
         self.ventana_ranking.senal_volver.connect(self.iniciar)
+        self.logica_juego.senal_avanzar.connect(self.ventana_postronda.mostrar_ventana)
         pass
 
     def iniciar(self):

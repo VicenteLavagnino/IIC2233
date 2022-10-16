@@ -174,7 +174,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_volver">
+   <widget class="QPushButton" name="pushButton_siguiente">
     <property name="geometry">
      <rect>
       <x>430</x>

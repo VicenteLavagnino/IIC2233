@@ -1,5 +1,5 @@
-from ast import Str
 from parametros import RUTA_PUNTAJES
+from PyQt5.QtWidgets import QPushButton, QMessageBox
 
 
 def agregar_ranking(usuario: str, puntaje: int):
@@ -55,6 +55,29 @@ def orden(line):
     return int(line[1])
 
 
-agregar_ranking("usuario", 10)
-agregar_ranking("aaao", 99)
-agregar_ranking("aabo", 50)
+# Código extraido de internet desde el siguiente link:
+# https://pythonbasics.org/pyqt-qmessagebox/
+
+
+def pop_error(Error: str):
+
+    msgBox = QMessageBox()
+    msgBox.setIcon(QMessageBox.Information)
+    msgBox.setText(Error)
+    msgBox.setWindowTitle("QMessageBox")
+    msgBox.setStandardButtons(QMessageBox.Ok)
+
+    returnValue = msgBox.exec()
+    if returnValue == QMessageBox.Ok:
+        print("OK clicked")
+
+
+def estoy_dentro(pos_esquina, pos_mouse, tamano: tuple):
+
+    if (
+        pos_esquina[0] < pos_mouse[0] < pos_esquina[0] + tamano[0]
+        and pos_esquina[1] < pos_mouse[1] < pos_esquina[1] + tamano[1]
+    ):
+        return True
+    else:
+        return False
