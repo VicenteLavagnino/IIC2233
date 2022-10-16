@@ -2,6 +2,7 @@
 
 from PyQt5.QtCore import QObject
 from random import random
+from aparicion_zombies import intervalo_aparicion
 from time import time
 from parametros import (
     CANTIDAD_SOLES,
@@ -31,7 +32,7 @@ class Juego(QObject):
             ["", "", "", "", "", "", "", "", "", ""],
         ]
 
-        self.ronda
+        self.ronda = 1
         self.modo = modo
         self.usuario = usuario
         self.soles = SOLES_INICIALES
@@ -69,6 +70,10 @@ class Juego(QObject):
             time.sleep(INTERVALO_APARICION_SOLES)
         else:
             self.aparicion_soles()
+
+    def agregar_zombies(self):
+
+        intervalo_aparicion(self.ronda, self.modo)
 
 
 # PLANTAS

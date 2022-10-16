@@ -47,16 +47,67 @@ class VentanaJuego(window_name, base_class):
             return ("plantas", "girasol")
 
         # planta
-        elif estoy_dentro((0, 90), (x, y), (100, 70)):
+        elif estoy_dentro((0, 140), (x, y), (100, 70)):
             return ("plantas", "planta")
 
         # planta hielo
+
+        elif estoy_dentro((0, 260), (x, y), (100, 70)):
+            return ("plantas", "planta_hielo")
+
+        # planta papa
+
+        elif estoy_dentro((0, 380), (x, y), (100, 70)):
+            return ("plantas", "planta_papa")
+
+        # [0,0]
+        elif estoy_dentro((230, 170), (x, y), (30, 75)):
+            return ("tablero", "0,0")
+        # [0,1]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,1")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
+        # [0,2]
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+            return ("tablero", "0,2")
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             x = event.pos().x()
             y = event.pos().y()
-            self.click_pantalla.emit(x, y)
+            self.senal_click.emit(x, y)
 
     def mostrar_ventana(self, modo: str) -> None:
 
