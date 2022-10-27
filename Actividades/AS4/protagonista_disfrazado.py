@@ -30,13 +30,14 @@ class ProtagonistaDisfrazado:
         visitados = []
         stack = [casa_inicial]
 
+        casa_actual = casa_inicial
+
         while len(stack) > 0:
             casa = stack.pop()
 
             if casa in visitados:
                 pass
             else:
-
                 if casa.hijo_derecho == None and casa.hijo_izquierdo == None:
                     continue
 
