@@ -48,10 +48,32 @@ class ColaDulces:
 
     def obtener_posicion_protagonista(self):
         """
-        Retorna la posición del tot protagoista en la cola.
+        Retorna la posición del tot protagonista en la cola.
         Si no se encuentra en la fila, retorna -1
         """
         # COMPLETAR
+
+        if self.primero is None:
+            return -1
+        else:
+
+            tot_actual = self.primero
+            posicion = 0
+
+            if tot_actual.protagonista:
+                return posicion
+
+            else:
+                while tot_actual.siguiente.protagonista is False:
+
+                    tot_actual = tot_actual.siguiente
+                    posicion += 1
+
+                    if tot_actual.protagonista:
+                        return posicion
+
+                    if tot_actual.siguiente is None:
+                        return -1
 
     def tot_se_cola(self, nombre: str, posicion: int):
         """
@@ -59,6 +81,21 @@ class ColaDulces:
         lo inserta en la cola en la posición recibida.
         """
         # COMPLETAR
+        tot_actual = self.primero
+
+        tot_nuevo = TrickOrTreater(nombre)
+
+        if posicion == 0:
+            tot_nuevo.siguiente = self.primero
+            self.primero = tot_nuevo
+
+        else:
+            while tot_nuevo != tot_actual:
+                tot_actual = tot_actual.siguiente
+
+            if tot_nuevo == tot_actual:
+                tot_nuevo.siguiente = tot_actual.siguiente
+                tot_actual.siguiente = tot_nuevo
 
     def tot_se_va(self, posicion: int):
         """
@@ -87,11 +124,32 @@ class ColaDulces:
         """
         # COMPLETAR
 
+        tot_actual = self.primero
+        eliminado = self.primero
+        self.primero = tot_actual.siguiente
+
+        while tot_actual.siguiente.siguiente is not None:
+            tot_actual.siguiente = tot_actual.siguiente.siguiente
+            tot_actual = tot_actual.siguiente
+
+        if tot_actual.siguiente.siguiente is None:
+            self.ultimo = tot_actual
+
+        return eliminado
+
     def obtener_largo(self):
         """
         Retorna el largo de la cola como int.
         """
         # COMPLETAR
+        tot_actual = self.primero
+        contador = 0
+
+        while tot_actual is not None:
+            contador += 1
+            tot_actual = tot_actual.siguiente
+
+        return contador
 
     def __str__(self) -> str:
         """
