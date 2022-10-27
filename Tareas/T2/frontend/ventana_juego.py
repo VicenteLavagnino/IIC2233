@@ -61,42 +61,37 @@ class VentanaJuego(window_name, base_class):
             return ("plantas", "planta_papa")
 
         # [0,0]
-        elif estoy_dentro((230, 170), (x, y), (30, 75)):
+        elif estoy_dentro((230, 270), (x, y), (30, 75)):
             return ("tablero", "0,0")
         # [0,1]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,1")
+        elif estoy_dentro((270, 270), (x, y), (30, 75)):
+            return ("tablero", "0,3")
         # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+        elif estoy_dentro((310, 270), (x, y), (30, 75)):
+            return ("tablero", "0,4")
+        # [0,3]
+        elif estoy_dentro((350, 270), (x, y), (30, 75)):
+            return ("tablero", "0,5")
+        # [0,4]
+        elif estoy_dentro((380, 270), (x, y), (30, 75)):
+            return ("tablero", "0,6")
+        # [0,5]
+        elif estoy_dentro((420, 270), (x, y), (30, 75)):
+            return ("tablero", "0,7")
+        # [0,6]
+        elif estoy_dentro((460, 270), (x, y), (30, 75)):
+            return ("tablero", "0,8")
+        # [0,7]
+        elif estoy_dentro((500, 270), (x, y), (30, 75)):
             return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+        # [0,8]
+        elif estoy_dentro((530, 270), (x, y), (30, 75)):
             return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
+        # [0,9]
+        elif estoy_dentro((570, 270), (x, y), (30, 75)):
             return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,2")
-        # [0,2]
-        elif estoy_dentro((230, 270), (x, y), (30, 75)):
-            return ("tablero", "0,2")
-        # [0,2]
+
+        # [1, 0]
         elif estoy_dentro((230, 270), (x, y), (30, 75)):
             return ("tablero", "0,2")
         # [0,2]
