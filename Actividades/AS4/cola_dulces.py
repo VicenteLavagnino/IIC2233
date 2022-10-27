@@ -1,16 +1,14 @@
-class TrickOrTreater: #TrickOrTreater = tot
-
-    def __init__(self, nombre: str): 
+class TrickOrTreater:  # TrickOrTreater = tot
+    def __init__(self, nombre: str):
         self.nombre = nombre
         self.protagonista = False
-        self.siguiente = None #persona despues en la fila
-    
+        self.siguiente = None  # persona despues en la fila
 
 
-class ColaDulces:   
+class ColaDulces:
     """
     Clase que representa una lista ligada
-    """    
+    """
 
     def __init__(self):
         """
@@ -29,17 +27,17 @@ class ColaDulces:
             self.primero = nuevo
             self.ultimo = self.primero
 
-        else:            
+        else:
             self.ultimo.siguiente = nuevo
             self.ultimo = self.ultimo.siguiente
-            
-    def obtener_tot(self, posicion: int): 
+
+    def obtener_tot(self, posicion: int):
         """
-        Recibe una posición como argumento y retorna 
+        Recibe una posición como argumento y retorna
         el tot en esa posición de la cola
         """
         tot_actual = self.primero
-        
+
         for _ in range(posicion):
             if tot_actual is not None:
                 tot_actual = tot_actual.siguiente
@@ -47,25 +45,20 @@ class ColaDulces:
                 return None
 
         return tot_actual
-            
-            
 
-            
     def obtener_posicion_protagonista(self):
         """
-        Retorna la posición del tot protagoista en la cola. 
+        Retorna la posición del tot protagoista en la cola.
         Si no se encuentra en la fila, retorna -1
         """
-        #COMPLETAR
+        # COMPLETAR
 
-    
-    def tot_se_cola(self, nombre: str, posicion: int): 
+    def tot_se_cola(self, nombre: str, posicion: int):
         """
         Crea una instancia de TrickOrTreater con el nombre recibido y
         lo inserta en la cola en la posición recibida.
         """
-        #COMPLETAR
-
+        # COMPLETAR
 
     def tot_se_va(self, posicion: int):
         """
@@ -80,25 +73,25 @@ class ColaDulces:
                 self.ultimo = tot_nuevo
 
             return
-            
-        tot_actual = self.obtener(posicion-1)
+
+        tot_actual = self.obtener(posicion - 1)
         tot_fuera = tot_actual.siguiente
         tot_actual.siguiente = tot_fuera.siguiente
         tot_fuera.siguiente = None
         if tot_actual.siguiente is None:
-            self.ultimo=tot_actual
-    
+            self.ultimo = tot_actual
+
     def atender_tot(self):
         """
         Elimina a la primera persona de la cola y la retorna.
         """
-        #COMPLETAR
+        # COMPLETAR
 
     def obtener_largo(self):
         """
         Retorna el largo de la cola como int.
         """
-        #COMPLETAR
+        # COMPLETAR
 
     def __str__(self) -> str:
         """
@@ -108,7 +101,7 @@ class ColaDulces:
         string = "DULCES :) "
         tot_actual = self.primero
         while tot_actual:
-            string += "<- "+tot_actual.nombre
+            string += "<- " + tot_actual.nombre
             tot_actual = tot_actual.siguiente
-   
+
         return string
