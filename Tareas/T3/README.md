@@ -119,7 +119,7 @@ Lo importante es que expliquen qué hace la función y que si saben que alguna p
 ## Referencias de código externo :book:
 
 Para realizar mi tarea saqué código de:
-1. \<link de código>: este hace \<lo que hace> y está implementado en el archivo <nombre.py> en las líneas <número de líneas> y hace <explicación breve de que hace>
+1. \<https://www.youtube.com/watch?v=3QiPPX-KeSc>: este \<enseña a usar la estructura Cliente-Servidor> y fue usada para estructurar la Tarea en general y partticularmente en los archivos ```cliente.py``` y ```servidor.py```
 
 
 

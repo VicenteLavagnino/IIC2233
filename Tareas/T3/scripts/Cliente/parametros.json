@@ -1,0 +1,28 @@
+{
+    "HOST": "localhost",
+    "PORT": 47658,
+    "TOTAL_JUGADORES": 2,
+    "BARAJA_PANTALA": 3,
+    "CUENTA_REGRESIVA_RONDA": 30,
+    "CUENTA_REGRESIVA_INICIO": 10,
+    "RUTA_VENTANA_INICIO": [
+        "frontend",
+        "archivos",
+        "ventana_inicio.ui"
+    ],
+    "RUTA_VENTANA_ESPERA": [
+        "frontend",
+        "archivos",
+        "ventana_espera.ui"
+    ],
+    "RUTA_VENTANA_JUEGO": [
+        "frontend",
+        "archivos",
+        "ventana_juego.ui"
+    ],
+    "RUTA_VENTANA_FINAL": [
+        "frontend",
+        "archivos",
+        "ventana_final.ui"
+    ]
+}
