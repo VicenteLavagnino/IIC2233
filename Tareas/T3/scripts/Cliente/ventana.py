@@ -19,6 +19,9 @@ class Ventana(QObject):
     senal_avanzar_juego = pyqtSignal(str, str)
     senal_oponente_desconectado = pyqtSignal()
     senal_servidor_desconectado = pyqtSignal()
+    senal_empate = pyqtSignal()
+    senal_ganador = pyqtSignal()
+    senal_perdedor = pyqtSignal()
 
     senal_chat_recibido = pyqtSignal(str)
 
@@ -53,6 +56,9 @@ class Ventana(QObject):
         # Señales de la ventana Juego
 
         self.ventana_juego.senal_enviar_carta.connect(parent.send_response)
+        self.senal_empate.connect(self.ventana_juego.empate)
+        self.senal_ganador.connect(self.ventana_juego.ganador)
+        self.senal_perdedor.connect(self.ventana_juego.perdedor)
 
         # Señales de la ventana Final
         self.senal_oponente_desconectado.connect(
@@ -103,3 +109,12 @@ class Ventana(QObject):
 
     def respuesta_chat(self, msg_oponente):
         self.senal_chat_recibido.emit(msg_oponente)
+
+    def ganador(self):
+        self.senal_ganador.emit()
+
+    def perdedor(self):
+        self.senal_perdedor.emit()
+
+    def empate(self):
+        self.senal_empate.emit()

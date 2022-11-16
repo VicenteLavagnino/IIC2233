@@ -131,6 +131,9 @@ class Cliente:
         elif tipo == "CHAT":
             self.ventana.respuesta_chat(mensaje[1])
 
+        elif tipo == "JUEGO":
+            self.resultado(mensaje)
+
     def manejar_login(self, mensaje):
 
         self.log(f"Mensaje recibido: {mensaje}")
@@ -158,3 +161,14 @@ class Cliente:
                 self.oponente = jugador
 
         self.ventana.avanzar_juego(self.username, self.oponente)
+
+    def resultado(self, mensaje):
+
+        if mensaje[1] == self.username:
+            self.ventana.ganador()
+
+        elif mensaje[1] == "EMPATE":
+            self.ventana.empate()
+
+        else:
+            self.ventana.perdedor()

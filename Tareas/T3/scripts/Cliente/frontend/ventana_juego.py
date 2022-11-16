@@ -159,3 +159,12 @@ class VentanaJuego(window_name, base_class):
 
         mensaje = f"JUGARCARTA;{self.carta['color']};{self.carta['elemento']};{self.carta['puntos']}"
         self.senal_enviar_carta.emit(mensaje)
+
+    def ganador(self):
+        self.esperando_respuesta.setText("GANASTE")
+
+    def perdedor(self):
+        self.esperando_respuesta.setText("PERDISTE")
+
+    def empate(self):
+        self.esperando_respuesta.setText("EMPATE")
