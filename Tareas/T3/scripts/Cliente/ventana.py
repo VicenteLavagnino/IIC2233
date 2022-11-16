@@ -68,6 +68,8 @@ class Ventana(QObject):
             self.ventana_final.desconexion_servidor
         )
 
+        self.ventana_final.senal_volver_inicio.connect(self.ventana_inicio.abrir)
+
         # Señales del chat
         self.chat.senal_enviar_mensaje.connect(parent.send_response)
         self.senal_chat_recibido.connect(self.chat.recibir_mensaje)

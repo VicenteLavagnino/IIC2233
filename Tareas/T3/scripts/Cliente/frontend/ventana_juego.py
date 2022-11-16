@@ -68,6 +68,7 @@ class VentanaJuego(window_name, base_class):
 
         if self.tiempo_total == 0:
             self.timer.stop()
+            self.jugar_carta()
 
     def mostrar_carta(self):
 
@@ -133,24 +134,24 @@ class VentanaJuego(window_name, base_class):
         pass
 
     def carta_seleccionada(self, ubicacion):
-        self.carta = self.cartas[self.orden[ubicacion]]
-        self.orden.append(self.orden.pop(ubicacion))
+        self.carta = self.cartas[self.orden[ubicacion - 1]]
+        self.orden.append(self.orden.pop(ubicacion - 1))
 
     def jugar_carta(self):
 
-        if self.Button0.isChecked():
+        if self.Buttonc0.isChecked():
             self.carta_seleccionada(0)
 
-        elif self.Button1.isChecked():
+        elif self.Buttonc1.isChecked():
             self.carta_seleccionada(1)
 
-        elif self.Button2.isChecked():
+        elif self.Buttonc2.isChecked():
             self.carta_seleccionada(2)
 
-        elif self.Button3.isChecked():
+        elif self.Buttonc3.isChecked():
             self.carta_seleccionada(3)
 
-        elif self.Button4.isChecked():
+        elif self.Buttonc4.isChecked():
             self.carta_seleccionada(4)
 
         else:

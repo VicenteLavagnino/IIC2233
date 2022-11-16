@@ -2,12 +2,15 @@ import sys
 from PyQt5 import uic
 from os.path import join
 from helpers import json_reader
-
+from PyQt5.QtCore import QTimer, pyqtSignal
 
 window_name, base_class = uic.loadUiType(join(*json_reader("RUTA_VENTANA_FINAL")))
 
 
 class VentanaFinal(window_name, base_class):
+
+    senal_volver_inicio = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -36,6 +39,8 @@ class VentanaFinal(window_name, base_class):
 
     def volver(self):
         self.ocultar()
+        self.senal_volver_inicio.emit()
+
         pass
 
     def desconexion_repentina(self):
