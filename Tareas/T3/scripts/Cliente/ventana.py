@@ -52,6 +52,8 @@ class Ventana(QObject):
 
         # Señales de la ventana Juego
 
+        self.ventana_juego.senal_enviar_carta.connect(parent.send_response)
+
         # Señales de la ventana Final
         self.senal_oponente_desconectado.connect(
             self.ventana_final.desconexion_repentina
