@@ -580,6 +580,35 @@
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="esperando_respuesta">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>30</y>
+      <width>401</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string>Esperando respuesta oponente...</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
    <zorder>label_fondo</zorder>
    <zorder>widget</zorder>
    <zorder>label_table</zorder>
@@ -609,6 +638,7 @@
    <zorder>Buttonc2</zorder>
    <zorder>Buttonc3</zorder>
    <zorder>Buttonc4</zorder>
+   <zorder>esperando_respuesta</zorder>
   </widget>
  </widget>
  <resources/>

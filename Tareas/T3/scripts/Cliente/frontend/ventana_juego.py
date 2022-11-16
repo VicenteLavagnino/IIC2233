@@ -4,7 +4,7 @@ from os.path import join
 from helpers import json_reader
 from PyQt5.QtCore import QTimer, pyqtSignal
 from PyQt5.QtGui import QPixmap
-from random import choice
+from random import choice, randint
 from cartas import get_penguins
 
 
@@ -12,15 +12,22 @@ window_name, base_class = uic.loadUiType(join(*json_reader("RUTA_VENTANA_JUEGO")
 
 
 class VentanaJuego(window_name, base_class):
+
+    senal_enviar_carta = pyqtSignal(str)
+
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.cartas = dict()
+        self.orden = list()
+        self.carta = dict()
 
         self.pushButton_select.clicked.connect(self.seleccionar)
 
     def abrir(self, username, oponente):
 
         self.cartas = get_penguins()
+        self.orden = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
         print(self.cartas)
 
         cuenta_regresiva = json_reader("CUENTA_REGRESIVA_RONDA")
@@ -29,22 +36,24 @@ class VentanaJuego(window_name, base_class):
         self.name_oponente.setText(oponente)
         self.name_jugador.setText(username)
         self.numero.setText(str(cuenta_regresiva))
+        self.esperando_respuesta.hide()
         self.tipo0.hide()
         self.tipo1.hide()
         self.tipoD0.hide()
         self.tipoD1.hide()
         self.tipoD2.hide()
         self.mostrar_carta()
+        self.jugar_ronda()
         self.show()
 
     def jugar_ronda(self):
         self.start_timer()
         pass
 
-    def iniciar_turno(self):
-        pass
-
     def seleccionar(self):
+        self.esperando_respuesta.show()
+
+    def iniciar_turno(self):
         pass
 
     def start_timer(self):
@@ -122,3 +131,31 @@ class VentanaJuego(window_name, base_class):
         self.repaint()
 
         pass
+
+    def carta_seleccionada(self, ubicacion):
+        self.carta = self.cartas[self.orden[ubicacion]]
+        self.orden.append(self.orden.pop(ubicacion))
+
+    def jugar_carta(self):
+
+        if self.Button0.isChecked():
+            self.carta_seleccionada(0)
+
+        elif self.Button1.isChecked():
+            self.carta_seleccionada(1)
+
+        elif self.Button2.isChecked():
+            self.carta_seleccionada(2)
+
+        elif self.Button3.isChecked():
+            self.carta_seleccionada(3)
+
+        elif self.Button4.isChecked():
+            self.carta_seleccionada(4)
+
+        else:
+            seleccion = randint(0, 4)
+            self.carta_seleccionada(seleccion)
+
+        mensaje = f"JUGARCARTA;{self.carta['color']};{self.carta['elemento']};{self.carta['puntos']}"
+        self.senal_enviar_carta.emit(mensaje)
