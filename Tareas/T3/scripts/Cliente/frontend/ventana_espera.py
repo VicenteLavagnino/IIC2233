@@ -12,10 +12,13 @@ class VentanaEspera(window_name, base_class):
 
     senal_avanzar_juego = pyqtSignal(str, str)
     senal_abrir_chat = pyqtSignal()
+    senal_volver_inicio = pyqtSignal()
 
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        self.pushButton_jugar.clicked.connect(self.volver_inicio)
 
     def abrir(self, username):
         print("abriendo ventana de espera")
@@ -61,3 +64,7 @@ class VentanaEspera(window_name, base_class):
             self.senal_avanzar_juego.emit(self.username, self.oponente)
             self.senal_abrir_chat.emit()
             self.ocultar()
+
+    def volver_inicio(self):
+        self.ocultar()
+        self.senal_volver_inicio.emit()

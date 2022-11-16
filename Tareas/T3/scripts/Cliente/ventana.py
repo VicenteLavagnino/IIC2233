@@ -52,6 +52,7 @@ class Ventana(QObject):
         self.senal_avanzar_juego.connect(self.ventana_espera.avanzar_juego)
         self.ventana_espera.senal_avanzar_juego.connect(self.ventana_juego.abrir)
         self.ventana_espera.senal_abrir_chat.connect(self.chat.abrir)
+        self.ventana_espera.senal_volver_inicio.connect(self.ventana_inicio.abrir)
 
         # Señales de la ventana Juego
 
