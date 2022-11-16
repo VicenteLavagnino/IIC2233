@@ -37,3 +37,15 @@ class VentanaFinal(window_name, base_class):
     def volver(self):
         self.ocultar()
         pass
+
+    def desconexion_repentina(self):
+
+        self.vista = True
+        self.mensaje.setText("¡Felicidades, has ganado!")
+        self.show()
+
+    def desconexion_servidor(self):
+
+        self.vista = True
+        self.mensaje.setText("Lo sentimos, hay un problema con el servidor :(")
+        self.show()

@@ -80,7 +80,7 @@ Por otro lado, los módulos que fueron creados fueron los siguientes:
 ## Supuestos y consideraciones adicionales :thinking:
 Los supuestos que realicé durante la tarea son los siguientes:
 
-1. <Descripción/consideración 1 y justificación del por qué es válido/a> 
+1. <el archivo ```carpetas.py`` está creado en la carpeta ```Cliente```> 
 2. <Descripción/consideración 2 y justificación del por qué es válido/a>
 3. ...
 
@@ -125,3 +125,27 @@ Para realizar mi tarea saqué código de:
 
 ## Descuentos
 La guía de descuentos se encuentra [link](https://github.com/IIC2233/Syllabus/blob/master/Tareas/Descuentos.md).
+
+
+## Tarea Realizada en:
+```geojson
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -0,
+                            51
+                        ],
+                    ]
+                ]
+            }
+        }
+    ]
+}

@@ -1,8 +1,8 @@
 {
     "HOST": "localhost",
-    "PORT": 47658,
+    "PORT": 47657,
     "TOTAL_JUGADORES": 2,
-    "BARAJA_PANTALA": 3,
+    "BARAJA_PANTALA": 5,
     "CUENTA_REGRESIVA_RONDA": 10,
     "CUENTA_REGRESIVA_INICIO": 10
 }

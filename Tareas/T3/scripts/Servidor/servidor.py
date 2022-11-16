@@ -4,6 +4,7 @@ import socket
 import threading
 import json
 from logica import Logica
+from cripto import encriptar, desencriptar
 
 
 class Servidor:
@@ -12,7 +13,8 @@ class Servidor:
         self.port = port
         self.socket_servidor = None
         self.conectado = False
-        print("Servidor creado con éxito!")
+        self.log("".center(80, "-"))
+        self.log("Servidor creado con éxito!")
         self.sockets_totales = []
         self.logica = Logica(self)
         self.lock = threading.Lock()
@@ -25,7 +27,7 @@ class Servidor:
         self.socket_servidor.bind((self.host, self.port))
         self.socket_servidor.listen()
         self.conectado = True
-        print(f"Servidor iniciado, host: {self.host}, puerto: {self.port}")
+        self.log(f"Servidor iniciado, host: {self.host}, puerto: {self.port}")
         self.accept_connections()
 
     def accept_connections(self):
@@ -35,10 +37,11 @@ class Servidor:
 
     def accept_connections_thread(self):
 
-        print("Aceptando nuevas conexiones...")
+        self.log("Aceptando nuevas conexiones...")
 
         while self.conectado:
             client_socket, _ = self.socket_servidor.accept()
+            self.sockets_totales.append(client_socket)
             listening_client_thread = threading.Thread(
                 target=self.listen_client_thread, args=(client_socket,), daemon=True
             )
@@ -46,33 +49,45 @@ class Servidor:
 
     def listen_client_thread(self, client_socket):
         """escucha los mensajes del cliente"""
-        print("Escuchando cliente...")
+        self.log("Escuchando cliente...")
 
         while self.conectado:
-            response_bytes_length = client_socket.recv(4)
-            response_length = int.from_bytes(response_bytes_length, byteorder="big")
-            response = bytearray()
 
-            for i in range(response_length // 32 + 1):
-                numero_bloque_bytes = client_socket.recv(4)
-                numero_bloque = int.from_bytes(numero_bloque_bytes, byteorder="little")
-                print("Codificando bloque numero", numero_bloque)
+            try:
+                response_bytes_length = client_socket.recv(4)
+                response_length = int.from_bytes(response_bytes_length, byteorder="big")
+                response = bytearray()
 
-                mensaje_bloque_bytes = client_socket.recv(32)
-                response += mensaje_bloque_bytes
-                print("mensaje bloque:", mensaje_bloque_bytes)
+                for i in range(response_length // 32 + 1):
+                    numero_bloque_bytes = client_socket.recv(4)
+                    numero_bloque = int.from_bytes(
+                        numero_bloque_bytes, byteorder="little"
+                    )
+                    self.log(f"Codificando bloque numero {numero_bloque}")
 
-            received = self.decodificar(response)
-            print("Mensaje recibido:", received)
+                    mensaje_bloque_bytes = client_socket.recv(32)
+                    response += mensaje_bloque_bytes
+                    self.log(f"mensaje bloque: {mensaje_bloque_bytes}")
 
-            self.logica.message_handler(received, client_socket)
+                received = self.decodificar(response)
+                self.log(f"Mensaje recibido: {received}")
+
+                self.logica.message_handler(received, client_socket)
+
+            except:
+                self.log("Cliente desconectado")
+                mensaje = "CLIENTE_DESCONECTADO"
+                for socket in self.sockets_totales:
+                    if socket != client_socket:
+                        self.send_response(mensaje, socket)
+                break
 
     def send_response(self, response, client_socket):
         """envía una respuesta al cliente"""
 
         with self.lock:
 
-            print("Enviando respuesta:", response)
+            self.log(f"Enviando respuesta: {response}")
             response = self.codificar(response)
 
             len_response = len(response)
@@ -97,7 +112,7 @@ class Servidor:
                     response += " "
                 mensaje += bytearray(response, encoding="utf-8")
 
-            print("Mensaje a enviar:", mensaje)
+            self.log(f"Mensaje a enviar: {mensaje}")
             return client_socket.sendall(mensaje)
 
     def codificar(self, mensaje):
@@ -106,12 +121,15 @@ class Servidor:
 
     def decodificar(self, mensaje):
 
-        print("Decodificando mensaje:", mensaje)
+        self.log(f"Decodificando mensaje: {mensaje}")
         mensaje = json.loads(mensaje)
-        print("Mensaje decodificado:", mensaje)
+        self.log(f"Mensaje decodificado: {mensaje}")
         return mensaje
 
     def handle_command(self, received, client_socket):
-        print("Comando recibido:", received)
+        self.log(f"Comando recibido: {received}")
         # Este método debería ejecutar la acción y enviar una respuesta.
         return "Acción asociada a " + received
+
+    def log(self, mensaje: str):
+        print("\n|" + mensaje.center(80, " ") + "|\n")

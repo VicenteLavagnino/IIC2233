@@ -11,6 +11,7 @@ window_name, base_class = uic.loadUiType(join(*json_reader("RUTA_VENTANA_ESPERA"
 class VentanaEspera(window_name, base_class):
 
     senal_avanzar_juego = pyqtSignal(str, str)
+    senal_abrir_chat = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -58,4 +59,5 @@ class VentanaEspera(window_name, base_class):
         if self.tiempo_total == 0:
             self.timer.stop()
             self.senal_avanzar_juego.emit(self.username, self.oponente)
+            self.senal_abrir_chat.emit()
             self.ocultar()

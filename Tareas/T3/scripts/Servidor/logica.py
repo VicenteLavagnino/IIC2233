@@ -22,6 +22,12 @@ class Logica:
         if tipo == "LOGIN":
             self.validar_usuario(mensaje, socket_cliente)
 
+        elif tipo == "JUGADA":
+            self.manejar_jugada(mensaje, socket_cliente)
+
+        elif tipo == "CHAT":
+            self.manejar_chat(mensaje, socket_cliente)
+
     def validar_usuario(self, usuario, socket_cliente):
 
         if len(self.jugadores) >= self.total_jugadores:
@@ -46,6 +52,15 @@ class Logica:
                 # enviar a ambos jugadores
                 for j in self.jugadores:
                     self.servidor.send_response(output, j.socket)
+
+    def manejar_chat(self, mensaje_para_oponente, socket_cliente):
+
+        mensaje = f"CHAT;{mensaje_para_oponente}"
+
+        # enviar a ambos jugadores
+        for j in self.jugadores:
+            if j.socket != socket_cliente:
+                self.servidor.send_response(mensaje, j.socket)
 
 
 class Jugador:

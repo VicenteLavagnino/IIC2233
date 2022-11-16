@@ -5,6 +5,7 @@ from frontend.ventana_espera import VentanaEspera
 from frontend.ventana_inicio import VentanaInicio
 from frontend.ventana_juego import VentanaJuego
 from frontend.ventana_final import VentanaFinal
+from frontend.chat import Chat
 
 
 class Ventana(QObject):
@@ -16,6 +17,10 @@ class Ventana(QObject):
     senal_error_name_server = pyqtSignal()
     senal_avanzar_espera = pyqtSignal(str)
     senal_avanzar_juego = pyqtSignal(str, str)
+    senal_oponente_desconectado = pyqtSignal()
+    senal_servidor_desconectado = pyqtSignal()
+
+    senal_chat_recibido = pyqtSignal(str)
 
     def __init__(self, parent) -> None:  # [parente = cliente]
 
@@ -24,6 +29,7 @@ class Ventana(QObject):
         self.ventana_inicio = VentanaInicio()
         self.ventana_juego = VentanaJuego()
         self.ventana_final = VentanaFinal()
+        self.chat = Chat()
 
         self.descarga = bytearray()
 
@@ -42,8 +48,21 @@ class Ventana(QObject):
 
         self.senal_avanzar_juego.connect(self.ventana_espera.avanzar_juego)
         self.ventana_espera.senal_avanzar_juego.connect(self.ventana_juego.abrir)
+        self.ventana_espera.senal_abrir_chat.connect(self.chat.abrir)
 
         # Señales de la ventana Juego
+
+        # Señales de la ventana Final
+        self.senal_oponente_desconectado.connect(
+            self.ventana_final.desconexion_repentina
+        )
+        self.senal_servidor_desconectado.connect(
+            self.ventana_final.desconexion_servidor
+        )
+
+        # Señales del chat
+        self.chat.senal_enviar_mensaje.connect(parent.send_response)
+        self.senal_chat_recibido.connect(self.chat.recibir_mensaje)
 
     def mostrar_ventana_inicio(self):
         self.ventana_inicio.abrir()
@@ -71,3 +90,14 @@ class Ventana(QObject):
         self.senal_avanzar_juego.emit(username, oponente)
         # abrir ventana juego
         pass
+
+    def oponente_desconectado(self):
+        self.senal_oponente_desconectado.emit()
+        pass
+
+    def servidor_desconectado(self):
+        self.senal_servidor_desconectado.emit()
+        pass
+
+    def respuesta_chat(self, msg_oponente):
+        self.senal_chat_recibido.emit(msg_oponente)

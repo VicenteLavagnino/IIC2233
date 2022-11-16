@@ -3,6 +3,7 @@ import json
 from threading import Thread
 from ventana import Ventana
 from helpers import name_error_server_full
+from cripto import encriptar, desencriptar
 
 
 class Cliente:
@@ -15,6 +16,9 @@ class Cliente:
         self.username = None
         self.oponente = None
         self.iniciar_cliente()
+
+    def log(self, mensaje: str):
+        print("\n|" + mensaje.center(80, " ") + "|\n")
 
     def iniciar_cliente(self):
         ##agregar try except
@@ -32,31 +36,32 @@ class Cliente:
     def escuchar_servidor_thread(self):
 
         while self.conectado:
-            print("escuchando")
+            self.log("escuchando")
             response_bytes_length = self.socket_cliente.recv(4)
             response_length = int.from_bytes(response_bytes_length, byteorder="big")
             response = bytearray()
 
-            print("Recibiendo respuesta del servidor...")
+            self.log("Recibiendo respuesta del servidor...")
 
             for i in range(response_length // 32 + 1):
-                print("Recibiendo bloque", i)
+                self.log(f"Recibiendo bloque {i}")
                 numero_bloque_bytes = self.socket_cliente.recv(4)
                 numero_bloque = int.from_bytes(numero_bloque_bytes, byteorder="little")
-                print("Codificando bloque numero", numero_bloque)
+                self.log(f"Codificando bloque numero {numero_bloque}")
 
                 mensaje_bloque_bytes = self.socket_cliente.recv(32)
-                print("Mensaje recibido:", mensaje_bloque_bytes)
+                self.log(f"Mensaje recibido: {mensaje_bloque_bytes}")
                 response += mensaje_bloque_bytes
 
             received = self.decodificar(response)
-            print("Recibido:", received)
+
+            self.log(f"Recibido: {received}")
 
             self.message_handler(received)
 
     def send_response(self, response):
         """envía una respuesta al servidor"""
-        print("Enviando respuesta:", response)
+        self.log(f"Enviando respuesta: {response}")
         response = self.codificar(response)
 
         len_response = len(response)
@@ -97,7 +102,7 @@ class Cliente:
 
     def message_handler(self, mensaje):
 
-        print("Mensaje recibido:", mensaje)
+        self.log(f"Mensaje recibido: {mensaje}")
 
         mensaje = mensaje.split(";")
         tipo = mensaje[0]
@@ -107,18 +112,27 @@ class Cliente:
 
         elif tipo == "INICIAR_PARTIDA":
             jugadores = mensaje[1].split(",")
-            print(f"INICIAR_PARTIDA, {jugadores}")
+            self.log(f"INICIAR_PARTIDA {jugadores}")
             self.manejar_iniciar_partida(jugadores)
+
+        elif tipo == "CLIENTE_DESCONECTADO":
+            self.ventana.oponente_desconectado()
+
+        elif tipo == "SERVIDOR_DESCONECTADO":
+            self.ventana.servidor_desconectado()
+
+        elif tipo == "CHAT":
+            self.ventana.respuesta_chat(mensaje[1])
 
     def manejar_login(self, mensaje):
 
-        print("Mensaje recibido:", mensaje)
+        self.log(f"Mensaje recibido: {mensaje}")
 
         if mensaje[1] == "True":
 
-            print(f"usuario {mensaje[2]}", mensaje[3])
+            self.log(f"usuario {mensaje[2]}, {mensaje[3]}")
             self.username = str(mensaje[3])
-            print("emitir señal")
+            self.log("emitir señal")
             self.ventana.avanzar_espera(self.username)
             pass
 

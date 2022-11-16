@@ -1,8 +1,8 @@
 {
     "HOST": "localhost",
-    "PORT": 47658,
+    "PORT": 47657,
     "TOTAL_JUGADORES": 2,
-    "BARAJA_PANTALA": 3,
+    "BARAJA_PANTALA": 5,
     "CUENTA_REGRESIVA_RONDA": 30,
     "CUENTA_REGRESIVA_INICIO": 10,
     "RUTA_VENTANA_INICIO": [
@@ -24,5 +24,10 @@
         "frontend",
         "archivos",
         "ventana_final.ui"
+    ],
+    "RUTA_CHAT": [
+        "frontend",
+        "archivos",
+        "chat.ui"
     ]
 }
