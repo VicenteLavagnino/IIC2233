@@ -35,29 +35,36 @@ class Cliente:
 
     def escuchar_servidor_thread(self):
 
-        while self.conectado:
-            self.log("escuchando")
-            response_bytes_length = self.socket_cliente.recv(4)
-            response_length = int.from_bytes(response_bytes_length, byteorder="big")
-            response = bytearray()
+        try:
 
-            self.log("Recibiendo respuesta del servidor...")
+            while self.conectado:
+                self.log("escuchando")
+                response_bytes_length = self.socket_cliente.recv(4)
+                response_length = int.from_bytes(response_bytes_length, byteorder="big")
+                response = bytearray()
 
-            for i in range(response_length // 32 + 1):
-                self.log(f"Recibiendo bloque {i}")
-                numero_bloque_bytes = self.socket_cliente.recv(4)
-                numero_bloque = int.from_bytes(numero_bloque_bytes, byteorder="little")
-                self.log(f"Codificando bloque numero {numero_bloque}")
+                self.log("Recibiendo respuesta del servidor...")
 
-                mensaje_bloque_bytes = self.socket_cliente.recv(32)
-                self.log(f"Mensaje recibido: {mensaje_bloque_bytes}")
-                response += mensaje_bloque_bytes
+                for i in range(response_length // 32 + 1):
+                    self.log(f"Recibiendo bloque {i}")
+                    numero_bloque_bytes = self.socket_cliente.recv(4)
+                    numero_bloque = int.from_bytes(
+                        numero_bloque_bytes, byteorder="little"
+                    )
+                    self.log(f"Codificando bloque numero {numero_bloque}")
 
-            received = self.decodificar(response)
+                    mensaje_bloque_bytes = self.socket_cliente.recv(32)
+                    self.log(f"Mensaje recibido: {mensaje_bloque_bytes}")
+                    response += mensaje_bloque_bytes
 
-            self.log(f"Recibido: {received}")
+                received = self.decodificar(response)
 
-            self.message_handler(received)
+                self.log(f"Recibido: {received}")
+
+                self.message_handler(received)
+
+        except:
+            self.ventana.servidor_desconectado()
 
     def send_response(self, response):
         """envía una respuesta al servidor"""
