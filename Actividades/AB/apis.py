@@ -15,7 +15,7 @@ def get_animes() -> Tuple[int, List[Anime]]:
     animes = []
 
     # url = https://backend.chan.ing.puc.cl/animeranking/v1/AB?id=2
-
+    # formato inspirado en semana 14: Webservices
     url = ANIME_BASE_URL.format("AB?id=" + ANIME_NUMERO)
     response = requests.get(url)
     animes_received = response.json()["animes"]
