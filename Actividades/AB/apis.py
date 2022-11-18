@@ -24,7 +24,11 @@ def get_animes() -> Tuple[int, List[Anime]]:
 
     for anime in animes_received:
 
-        nuevo = Anime(anime["name"], anime["season"]["year"], anime["tags"])
+        nombre = anime["nombre"]
+        ano = anime["season"]["year"]
+        etiquetas = anime["tags"]
+
+        nuevo = Anime(nombre, ano, etiquetas)
         animes.append(nuevo)
 
     """for anime in animes:
@@ -61,6 +65,8 @@ def post_issue(token, animes: List[Anime]) -> Tuple[int, int]:
     status_code = response.status_code
     issue_number = response.json()["number"]
 
+    # print("issue_number ", issue_number, " debería ya estar creada")
+
     return status_code, issue_number
 
 
@@ -83,6 +89,8 @@ def put_lock_issue(token: str, numero_issue: int) -> int:
     response = requests.put(url, headers=headers)
     status_code = response.status_code
 
+    # print("issue_number ", numero_issue, " debería ya estar bloqueada")
+
     return status_code
 
 
@@ -103,6 +111,8 @@ def delete_lock_issue(token: str, numero_issue: int) -> int:
     }
 
     response = requests.delete(url, headers=headers)
+
+    # print("issue_number ", numero_issue, " debería ya estar desbloqueada")
 
     return status_code
 
