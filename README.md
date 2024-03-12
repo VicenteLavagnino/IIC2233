@@ -1,6 +1,6 @@
 # Repositorio de [Vicente Lavagnino](https://github.com/VicenteLavagnino)
 
-# Este repositorio fue subido luego de haber terminado el curso
+# Este repositorio fue subido luego de haber terminado el curso el 2022-2
 
 Este es el repositorio que utilizarás durante el resto del curso. Tanto profesores, ayudantes y bots tenemos acceso a este y podremos ver todos los cambios que hagas en tu código. **Es tu deber darle un buen uso y solo con fines académicos.**
 
